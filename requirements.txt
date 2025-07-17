@@ -1,4 +1,6 @@
 Flask
 Flask-Mail
 gunicorn
+fpdf
+requests
 python-dotenv
