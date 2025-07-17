@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gallery | Dada Flow Initiative</title>
+  <link rel="icon" href="/static/img/logo.png">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'media',
+      theme: {
+        extend: {
+          animation: {
+            fadeIn: "fadeIn 1.2s ease-in-out forwards",
+          },
+          keyframes: {
+            fadeIn: {
+              '0%': { opacity: 0, transform: 'translateY(20px)' },
+              '100%': { opacity: 1, transform: 'translateY(0)' },
+            }
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    .zoom:hover {
+      transform: scale(1.05);
+      transition: transform 0.4s ease-in-out;
+    }
+  </style>
+</head>
+
+<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white">
+
+  <!-- Navigation -->
+  <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <div class="flex items-center gap-4">
+        <img src="/static/img/logo.png" alt="Logo" class="w-10 h-10">
+        <span class="font-bold text-xl text-red-700 dark:text-red-400">Dada Flow</span>
+      </div>
+      <nav class="hidden md:flex gap-6 text-sm font-medium">
+        <a href="/" class="hover:text-red-600 dark:hover:text-red-400">Home</a>
+        <a href="/about" class="hover:text-red-600 dark:hover:text-red-400">About</a>
+        <a href="/programs" class="hover:text-red-600 dark:hover:text-red-400">Programs</a>
+        <a href="/gallery" class="text-red-700 dark:text-red-400 font-semibold">Gallery</a>
+        <a href="/contact" class="hover:text-red-600 dark:hover:text-red-400">Contact</a>
+        <a href="/volunteer" class="hover:text-red-600 dark:hover:text-red-400">Volunteer</a>
+        <a href="/donate" class="hover:text-red-600 dark:hover:text-red-400">Donate</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="bg-red-600 text-white py-20 px-6 text-center animate-fadeIn">
+    <div class="max-w-4xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Moments of Impact</h1>
+      <p class="text-lg md:text-xl">Snapshots from our journey of dignity, love, and empowerment.</p>
+    </div>
+  </section>
+
+  <!-- Gallery Section -->
+  <section class="py-16 px-6 max-w-7xl mx-auto animate-fadeIn">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
+      <img src="/static/img/students1.jpeg" alt="Students" class="rounded-xl shadow-lg zoom transition-all duration-300">
+      <img src="/static/img/distribution.jpeg" alt="Distribution" class="rounded-xl shadow-lg zoom transition-all duration-300">
+      <img src="/static/img/awareness.jpeg" alt="Awareness" class="rounded-xl shadow-lg zoom transition-all duration-300">
+      <img src="/static/img/education.jpeg" alt="Education" class="rounded-xl shadow-lg zoom transition-all duration-300">
+      <img src="/static/img/community.jpeg" alt="Community" class="rounded-xl shadow-lg zoom transition-all duration-300">
+      <img src="/static/img/team.jpeg" alt="Team" class="rounded-xl shadow-lg zoom transition-all duration-300">
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8 text-center mt-12">
+    <p class="text-sm">&copy; 2025 Dada Flow Initiative • Mtwapa, Kenya</p>
+    <div class="mt-4 space-x-4 text-sm">
+      <a href="https://facebook.com/DadaFlowInitiative" target="_blank" class="hover:text-red-400">Facebook</a>
+      <a href="https://wa.me/254758674533" target="_blank" class="hover:text-red-400">WhatsApp</a>
+      <a href="mailto:dadaflowinitiative@gmail.com" class="hover:text-red-400">Email</a>
+    </div>
+  </footer>
+
+</body>
+
+</html>

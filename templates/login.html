@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Admin Login | Dada Flow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="/static/img/logo.png">
+  <style>
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .fade-in {
+      animation: fadeIn 0.8s ease-out forwards;
+    }
+    input:focus {
+      outline: none;
+      border-color: #dc2626;
+      box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.2);
+    }
+  </style>
+</head>
+<body class="bg-gradient-to-r from-red-100 via-white to-red-100 min-h-screen flex justify-center items-center">
+
+  <form action="/login" method="POST" class="bg-white shadow-2xl fade-in p-8 rounded-2xl w-full max-w-sm border border-red-200">
+    <div class="flex flex-col items-center mb-6">
+      <img src="/static/img/logo.png" alt="Dada Flow Logo" class="w-12 h-12 mb-2">
+      <h2 class="text-2xl font-extrabold text-red-700">Admin Login</h2>
+      <p class="text-sm text-gray-500 mt-1">Only authorized users</p>
+    </div>
+
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        <div class="mb-4">
+          {% for category, message in messages %}
+            <div class="bg-red-100 text-red-700 border border-red-300 text-sm p-2 rounded mb-2">
+              {{ message }}
+            </div>
+          {% endfor %}
+        </div>
+      {% endif %}
+    {% endwith %}
+
+    <input 
+      type="text" 
+      name="username" 
+      placeholder="Username" 
+      class="border border-gray-300 p-3 w-full mb-4 rounded-lg transition focus:ring focus:ring-red-200"
+      required>
+
+    <input 
+      type="password" 
+      name="password" 
+      placeholder="Password" 
+      class="border border-gray-300 p-3 w-full mb-6 rounded-lg transition focus:ring focus:ring-red-200"
+      required>
+
+    <button 
+      type="submit" 
+      class="bg-red-600 hover:bg-red-700 text-white w-full py-3 rounded-lg font-semibold transition duration-300">
+      Login
+    </button>
+  </form>
+
+</body>
+</html>

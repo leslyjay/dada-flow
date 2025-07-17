@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Inbox | Dada Flow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="icon" href="/static/img/logo.png" />
+  <style>
+    .fade-in {
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      0% {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .btn-animated {
+      transition: all 0.3s ease;
+    }
+
+    .btn-animated:hover {
+      transform: scale(1.03) translateY(-2px);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800 font-sans">
+
+  <!-- Header -->
+  <header class="bg-white shadow-md sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
+      <h1 class="text-xl font-bold text-red-700">📥 Admin Inbox - Dada Flow</h1>
+      <div class="space-x-4 text-sm">
+        <a href="/admin/volunteers" class="text-blue-700 hover:text-blue-900 transition">👥 Volunteers</a>
+        <a href="/" class="text-red-600 hover:underline">← Back to Site</a>
+        <a href="/logout" class="text-red-600 hover:underline">Logout</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Inbox Section -->
+  <main class="py-10 max-w-6xl mx-auto px-4">
+    <div class="flex justify-between items-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-800">📨 Received Messages</h2>
+      <div class="space-x-3">
+        <a href="/export/pdf"
+          class="btn-animated bg-red-600 hover:bg-red-700 text-white px-4 py-2 rounded shadow-sm">Export PDF</a>
+        <a href="/export/csv"
+          class="btn-animated bg-gray-800 hover:bg-gray-900 text-white px-4 py-2 rounded shadow-sm">Export CSV</a>
+      </div>
+    </div>
+
+    {% if messages %}
+    <ul class="space-y-6">
+      {% for msg in messages %}
+      <li class="fade-in bg-white p-6 rounded-lg shadow border hover:shadow-lg transition duration-300">
+        <div class="flex justify-between items-start">
+          <div>
+            <p class="font-semibold text-red-700">
+              {{ msg.name }}
+              (<a href="mailto:{{ msg.email }}" class="text-blue-600 underline hover:text-blue-800">{{ msg.email }}</a>)
+            </p>
+            <p class="mt-2 text-gray-700 whitespace-pre-line">{{ msg.message }}</p>
+          </div>
+          <div class="flex space-x-2">
+            <form method="POST" action="/admin/reply/{{ msg.id }}">
+              <button type="submit"
+                class="btn-animated text-sm bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded">Reply</button>
+            </form>
+            <form method="POST" action="/admin/delete/{{ msg.id }}">
+              <button type="submit"
+                class="btn-animated text-sm bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded">Delete</button>
+            </form>
+          </div>
+        </div>
+      </li>
+      {% endfor %}
+    </ul>
+
+    <!-- Pagination (Optional) -->
+    <div class="mt-10 flex justify-center space-x-2">
+      {% if prev_url %}
+      <a href="{{ prev_url }}"
+        class="btn-animated px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-l text-sm">← Previous</a>
+      {% endif %}
+      {% if next_url %}
+      <a href="{{ next_url }}"
+        class="btn-animated px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-r text-sm">Next →</a>
+      {% endif %}
+    </div>
+
+    {% else %}
+    <p class="text-gray-500 italic mt-8 fade-in text-center">No messages received yet.</p>
+    {% endif %}
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-6 text-center mt-16 shadow-inner">
+    <p class="tracking-wide">&copy; 2025 Dada Flow Initiative • Admin Panel</p>
+  </footer>
+
+</body>
+
+</html>

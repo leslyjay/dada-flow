@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: dada-flow
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "python app.py"
+    envVars:
+      - key: MAIL_USERNAME
+        value: dixie.cartwright26@ethereal.email
+      - key: MAIL_PASSWORD
+        value: pDEcgfWNH8jenha669
+      - key: FLASK_ENV
+        value: production
