@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dada Flow Initiative</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <style>
+    :root {
+      --primary-color: #ff4081;
+      --dark-bg: #222;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      line-height: 1.6;
+      background-color: #fefefe;
+      color: #333;
+    }
+
+    nav {
+      background: #ffffff;
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      animation: slideDown 1s ease-in-out;
+    }
+
+    .logo {
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: var(--primary-color);
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: #333;
+      margin-left: 1.5rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover {
+      color: var(--primary-color);
+    }
+
+    header {
+      background: url('hero-image.jpg') center/cover no-repeat;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      position: relative;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      z-index: 0;
+    }
+
+    header h1, header p {
+      position: relative;
+      z-index: 2;
+    }
+
+    header h1 {
+      font-size: 3rem;
+      font-weight: 800;
+    }
+
+    header p {
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    section {
+      padding: 4rem 2rem;
+      max-width: 1000px;
+      margin: auto;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+      text-align: center;
+      color: #111;
+    }
+
+    section p {
+      font-size: 1.1rem;
+      text-align: center;
+      max-width: 800px;
+      margin: auto;
+      line-height: 1.8;
+    }
+
+    .cta {
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      padding: 3rem 2rem;
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .cta h2 {
+      font-size: 2rem;
+    }
+
+    .cta button {
+      padding: 0.75rem 1.75rem;
+      background: var(--primary-color);
+      color: white;
+      font-size: 1rem;
+      font-weight: 600;
+      border: none;
+      border-radius: 10px;
+      margin-top: 2rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
+    }
+
+    .cta button:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 20px rgba(255, 64, 129, 0.5);
+    }
+
+    footer {
+      background: var(--dark-bg);
+      color: white;
+      text-align: center;
+      padding: 2rem 1rem;
+      margin-top: 4rem;
+      animation: fadeIn 1s ease-in-out 0.5s;
+    }
+
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 768px) {
+      header h1 {
+        font-size: 2rem;
+      }
+
+      nav {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .nav-links {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 1rem;
+      }
+
+      .nav-links a {
+        margin: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <nav>
+    <div class="logo">Dada Flow</div>
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#impact">Impact</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
+
+  <header>
+    <div>
+      <h1 data-aos="fade-up">Empowering Girls. Transforming Communities.</h1>
+      <p data-aos="fade-up" data-aos-delay="200">
+        Dada Flow provides dignity kits, mentorship, and education for girls in underserved communities.
+      </p>
+    </div>
+  </header>
+
+  <section id="about" data-aos="fade-up">
+    <h2>About Dada Flow</h2>
+    <p>
+      We are a youth-led initiative driving period dignity, reproductive health education,
+      and empowerment across Kenya. Through community engagement and advocacy,
+      we break stigma and create real change.
+    </p>
+  </section>
+
+  <section id="impact" data-aos="fade-up">
+    <h2>Our Impact</h2>
+    <p>
+      Over 5,000 girls reached in 12 counties. 300+ mentorship sessions delivered.
+      We aim to expand across East Africa with strategic partners and funders.
+    </p>
+  </section>
+
+  <section class="cta" data-aos="zoom-in" id="contact">
+    <h2>Join the Movement</h2>
+    <p>Partner, donate, or volunteer with Dada Flow. Together, we rewrite the future for girls.</p>
+    <button onclick="window.location.href='/volunteer'">Support Now</button>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 Dada Flow Initiative. All Rights Reserved.</p>
+  </footer>
+
+  <script>
+    AOS.init({
+      duration: 1000,
+      once: true
+    });
+  </script>
+</body>
+</html>
