@@ -4,18 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Our Programs | Dada Flow Initiative</title>
+  <link rel="icon" href="/images/logo.png" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="/static/img/logo.png" />
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+
+  <!-- Page Transitions -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const anchors = document.querySelectorAll('a[href$=".html"]');
+      for (const a of anchors) {
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.body.classList.add("fade-out");
+          setTimeout(() => {
+            window.location.href = this.href;
+          }, 300);
+        });
+      }
+    });
+  </script>
+
   <style>
+    body.fade-out {
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
+    }
     body {
       scroll-behavior: smooth;
+      opacity: 1;
+      transition: opacity 0.3s ease-out;
     }
 
     .nav-link {
       transition: all 0.3s ease-in-out;
     }
-
     .nav-link:hover {
       color: #b91c1c;
       transform: scale(1.05);
@@ -24,7 +46,6 @@
     .logo-animate {
       animation: pulse 2.5s infinite;
     }
-
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.1); }
@@ -38,7 +59,7 @@
   <header class="bg-white shadow sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
       <div class="flex items-center gap-4">
-        <img src="/static/img/logo.png" alt="Logo" class="w-10 h-10 logo-animate" />
+        <img src="/images/logo.png" alt="Logo" class="w-10 h-10 logo-animate" />
         <span class="font-bold text-xl text-red-700">Dada Flow</span>
       </div>
       <nav class="hidden md:flex gap-6 text-sm">
@@ -53,7 +74,7 @@
     </div>
   </header>
 
-  <!-- Hero Section -->
+  <!-- Hero -->
   <section class="bg-red-600 text-white py-20" data-aos="fade-down" data-aos-duration="1000">
     <div class="max-w-5xl mx-auto text-center px-6">
       <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-pulse">Our Programs</h1>
@@ -61,22 +82,22 @@
     </div>
   </section>
 
-  <!-- Programs Grid -->
+  <!-- Program Cards -->
   <section class="py-20 px-6 max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
     <div class="bg-white shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-500 p-6 rounded-lg" data-aos="fade-up">
-      <img src="/static/img/distribution.jpeg" class="rounded mb-4" alt="Sanitary pad distribution" />
+      <img src="/images/distribution.jpeg" class="rounded mb-4" alt="Sanitary pad distribution" />
       <h3 class="text-xl font-bold text-red-700 mb-2">Sanitary Pad Distribution</h3>
       <p>Ensuring every girl has access to safe, reliable menstrual hygiene products each month.</p>
     </div>
 
     <div class="bg-white shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-500 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
-      <img src="/static/img/education.jpeg" class="rounded mb-4" alt="Confidence and health education" />
+      <img src="/images/education.jpeg" class="rounded mb-4" alt="Confidence and health education" />
       <h3 class="text-xl font-bold text-red-700 mb-2">Confidence & Health Education</h3>
       <p>Workshops and talks that uplift, inform, and empower schoolgirls with essential life knowledge.</p>
     </div>
 
     <div class="bg-white shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-500 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
-      <img src="/static/img/community.jpeg" class="rounded mb-4" alt="Community awareness session" />
+      <img src="/images/community.jpeg" class="rounded mb-4" alt="Community awareness session" />
       <h3 class="text-xl font-bold text-red-700 mb-2">Community Awareness</h3>
       <p>Partnering with schools, families, and leaders to erase menstrual stigma through open dialogue.</p>
     </div>
@@ -92,9 +113,9 @@
     </div>
   </footer>
 
+  <!-- Animation Init -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>
-    AOS.init();
-  </script>
+  <script>AOS.init();</script>
+
 </body>
 </html>

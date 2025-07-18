@@ -1,12 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dada Flow Initiative</title>
+  <meta name="description" content="Empowering girls across Kenya with dignity kits, education, and mentorship. Join the Dada Flow Initiative.">
+  <meta name="author" content="Dada Flow Initiative" />
+  <link rel="icon" href="/images/logo.png" />
+
+  <!-- Fonts & AOS -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
   <style>
     :root {
       --primary-color: #ff4081;
@@ -22,9 +29,16 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      line-height: 1.6;
       background-color: #fefefe;
       color: #333;
+      line-height: 1.6;
+      opacity: 1;
+      transition: opacity 0.4s ease-out;
+    }
+
+    body.fade-out {
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
     }
 
     nav {
@@ -36,7 +50,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
       animation: slideDown 1s ease-in-out;
     }
 
@@ -51,7 +65,7 @@
       color: #333;
       margin-left: 1.5rem;
       font-weight: 600;
-      transition: color 0.3s;
+      transition: color 0.3s ease;
     }
 
     .nav-links a:hover {
@@ -59,7 +73,7 @@
     }
 
     header {
-      background: url('hero-image.jpg') center/cover no-repeat;
+      background: url('/images/hero-image.jpg') center/cover no-repeat;
       height: 100vh;
       display: flex;
       align-items: center;
@@ -72,13 +86,13 @@
     header::after {
       content: "";
       position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.6);
+      inset: 0;
+      background: rgba(0, 0, 0, 0.6);
       z-index: 0;
     }
 
-    header h1, header p {
+    header h1,
+    header p {
       position: relative;
       z-index: 2;
     }
@@ -92,14 +106,13 @@
       font-size: 1.2rem;
       margin-top: 1rem;
       max-width: 700px;
-      margin-left: auto;
-      margin-right: auto;
+      margin-inline: auto;
     }
 
     section {
       padding: 4rem 2rem;
       max-width: 1000px;
-      margin: auto;
+      margin-inline: auto;
     }
 
     section h2 {
@@ -161,13 +174,25 @@
     }
 
     @keyframes slideDown {
-      from { opacity: 0; transform: translateY(-20px); }
-      to { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
+      from {
+        opacity: 0;
+      }
+
+      to {
+        opacity: 1;
+      }
     }
 
     @media (max-width: 768px) {
@@ -193,16 +218,19 @@
     }
   </style>
 </head>
+
 <body>
+  <!-- Navigation -->
   <nav>
     <div class="logo">Dada Flow</div>
     <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#impact">Impact</a>
-      <a href="#contact">Contact</a>
+      <a href="about.html">About</a>
+      <a href="impact.html">Impact</a>
+      <a href="contact.html">Contact</a>
     </div>
   </nav>
 
+  <!-- Hero Section -->
   <header>
     <div>
       <h1 data-aos="fade-up">Empowering Girls. Transforming Communities.</h1>
@@ -212,6 +240,7 @@
     </div>
   </header>
 
+  <!-- About -->
   <section id="about" data-aos="fade-up">
     <h2>About Dada Flow</h2>
     <p>
@@ -221,6 +250,7 @@
     </p>
   </section>
 
+  <!-- Impact -->
   <section id="impact" data-aos="fade-up">
     <h2>Our Impact</h2>
     <p>
@@ -229,21 +259,35 @@
     </p>
   </section>
 
+  <!-- Call to Action -->
   <section class="cta" data-aos="zoom-in" id="contact">
     <h2>Join the Movement</h2>
     <p>Partner, donate, or volunteer with Dada Flow. Together, we rewrite the future for girls.</p>
-    <button onclick="window.location.href='/volunteer'">Support Now</button>
+    <button onclick="window.location.href='volunteer.html'">Support Now</button>
   </section>
 
+  <!-- Footer -->
   <footer>
     <p>&copy; 2025 Dada Flow Initiative. All Rights Reserved.</p>
   </footer>
 
+  <!-- JS for AOS + Page Transitions -->
   <script>
-    AOS.init({
-      duration: 1000,
-      once: true
+    AOS.init({ duration: 1000, once: true });
+
+    document.addEventListener("DOMContentLoaded", () => {
+      const anchors = document.querySelectorAll('a[href$=".html"]');
+      for (const a of anchors) {
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.body.classList.add("fade-out");
+          setTimeout(() => {
+            window.location.href = this.href;
+          }, 300);
+        });
+      }
     });
   </script>
 </body>
+
 </html>

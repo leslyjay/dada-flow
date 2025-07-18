@@ -4,22 +4,40 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Login | Dada Flow</title>
+  <link rel="icon" href="/images/logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="/static/img/logo.png">
+
+  <!-- Animations -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const anchors = document.querySelectorAll('a[href$=".html"]');
+      for (const a of anchors) {
+        a.addEventListener("click", function (e) {
+          e.preventDefault();
+          document.body.classList.add("fade-out");
+          setTimeout(() => {
+            window.location.href = this.href;
+          }, 300);
+        });
+      }
+    });
+  </script>
   <style>
+    body.fade-out {
+      opacity: 0;
+      transition: opacity 0.3s ease-in;
+    }
+    body {
+      opacity: 1;
+      transition: opacity 0.3s ease-out;
+    }
+
     @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(30px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
-    .fade-in {
-      animation: fadeIn 0.8s ease-out forwards;
-    }
+    .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+
     input:focus {
       outline: none;
       border-color: #dc2626;
@@ -29,24 +47,15 @@
 </head>
 <body class="bg-gradient-to-r from-red-100 via-white to-red-100 min-h-screen flex justify-center items-center">
 
-  <form action="/login" method="POST" class="bg-white shadow-2xl fade-in p-8 rounded-2xl w-full max-w-sm border border-red-200">
+  <form action="#" method="POST" class="bg-white shadow-2xl fade-in p-8 rounded-2xl w-full max-w-sm border border-red-200">
     <div class="flex flex-col items-center mb-6">
-      <img src="/static/img/logo.png" alt="Dada Flow Logo" class="w-12 h-12 mb-2">
+      <img src="/images/logo.png" alt="Dada Flow Logo" class="w-12 h-12 mb-2">
       <h2 class="text-2xl font-extrabold text-red-700">Admin Login</h2>
       <p class="text-sm text-gray-500 mt-1">Only authorized users</p>
     </div>
 
-    {% with messages = get_flashed_messages(with_categories=true) %}
-      {% if messages %}
-        <div class="mb-4">
-          {% for category, message in messages %}
-            <div class="bg-red-100 text-red-700 border border-red-300 text-sm p-2 rounded mb-2">
-              {{ message }}
-            </div>
-          {% endfor %}
-        </div>
-      {% endif %}
-    {% endwith %}
+    <!-- Replace this with your own static error alert if needed -->
+    <!-- <div class="bg-red-100 text-red-700 border border-red-300 text-sm p-2 rounded mb-4">Invalid login</div> -->
 
     <input 
       type="text" 

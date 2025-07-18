@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dada Flow</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Lottie Animations -->
+  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
+
+  <!-- ✅ Static favicon path -->
+  <link rel="icon" href="/images/logo.png" />
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col">
+
+  <!-- 🔻 Navbar -->
+  <header class="bg-white shadow py-4 px-6 flex justify-between items-center">
+    <a href="/" class="text-xl font-bold text-red-700">Dada Flow Admin</a>
+    <nav>
+      <a href="/dashboard.html" class="text-gray-700 hover:text-red-700 mx-2">Dashboard</a>
+      <a href="/inbox.html" class="text-gray-700 hover:text-red-700 mx-2">Inbox</a>
+      <a href="/volunteers.html" class="text-gray-700 hover:text-red-700 mx-2">Volunteers</a>
+      <a href="/subscribers.html" class="text-gray-700 hover:text-red-700 mx-2">Subscribers</a>
+      <a href="/logout.html" class="text-sm text-white bg-red-600 hover:bg-red-700 px-3 py-1 rounded ml-4">Logout</a>
+    </nav>
+  </header>
+
+  <!-- 🔻 Main Content -->
+  <main class="flex-1 py-8 px-6">
+    <!-- ⚠️ Flash messages removed for static version -->
