@@ -220,25 +220,41 @@
 </head>
 
 <body>
-  <!-- Navigation -->
-  <nav>
-    <div class="logo">Dada Flow</div>
-    <div class="nav-links">
-      <a href="about.html">About</a>
-      <a href="impact.html">Impact</a>
-      <a href="contact.html">Contact</a>
+  <!-- 🔥 Navigation -->
+  <nav class="bg-white shadow-lg fixed top-0 left-0 w-full z-50">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="flex justify-between items-center h-16">
+        <a href="index.html" class="flex items-center space-x-2">
+          <img src="/images/logo.png" alt="Dada Flow Logo" class="h-8 w-8">
+          <span class="font-bold text-red-600 text-xl">Dada Flow</span>
+        </a>
+        <div class="hidden md:flex space-x-6 text-sm font-medium text-gray-700">
+          <a href="index.html" class="hover:text-red-600">Home</a>
+          <a href="impact.html" class="hover:text-red-600">Impact</a>
+          <a href="programs.html" class="hover:text-red-600">Programs</a>
+          <a href="volunteer.html" class="hover:text-red-600">Volunteer</a>
+          <a href="donate.html" class="hover:text-red-600">Donate</a>
+          <a href="contact.html" class="hover:text-red-600">Contact</a>
+          <a href="login.html" class="hover:text-red-600">Dashboard</a>
+        </div>
+      </div>
     </div>
   </nav>
+  
 
-  <!-- Hero Section -->
-  <header>
-    <div>
-      <h1 data-aos="fade-up">Empowering Girls. Transforming Communities.</h1>
-      <p data-aos="fade-up" data-aos-delay="200">
-        Dada Flow provides dignity kits, mentorship, and education for girls in underserved communities.
-      </p>
+<!-- 🔥 Hero Section -->
+<section class="relative h-screen flex items-center justify-center text-white text-center px-6" style="background: url('/images/hero-bg.jpeg') center/cover no-repeat;">
+  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+  <div class="z-10 max-w-3xl">
+    <h1 class="text-5xl font-bold mb-6">Empowering Girls Through Dignity and Care</h1>
+    <p class="text-lg mb-8">Dada Flow Initiative is committed to fighting period poverty, educating communities, and creating change.</p>
+    <div class="space-x-4">
+      <a href="/donate.html" class="bg-pink-600 px-6 py-3 rounded-full font-semibold hover:bg-pink-700 transition">Donate Now</a>
+      <a href="/volunteer.html" class="bg-white text-pink-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">Join Us</a>
     </div>
-  </header>
+  </div>
+</section>
+
 
   <!-- About -->
   <section id="about" data-aos="fade-up">
