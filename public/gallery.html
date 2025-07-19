@@ -39,10 +39,13 @@
   <!-- Navigation -->
   <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div class="flex items-center gap-4">
+      <!-- Logo -->
+      <a href="/" class="flex items-center gap-2">
         <img src="/images/logo.png" alt="Logo" class="w-10 h-10" />
         <span class="font-bold text-xl text-red-700 dark:text-red-400">Dada Flow</span>
-      </div>
+      </a>
+
+      <!-- Desktop Nav -->
       <nav class="hidden md:flex gap-6 text-sm font-medium">
         <a href="/" class="hover:text-red-600 dark:hover:text-red-400">Home</a>
         <a href="/about" class="hover:text-red-600 dark:hover:text-red-400">About</a>
@@ -51,29 +54,50 @@
         <a href="/contact" class="hover:text-red-600 dark:hover:text-red-400">Contact</a>
         <a href="/volunteer" class="hover:text-red-600 dark:hover:text-red-400">Volunteer</a>
         <a href="/donate" class="hover:text-red-600 dark:hover:text-red-400">Donate</a>
+        <a href="/admin/login" class="text-xs bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Admin</a>
       </nav>
+
+      <!-- Mobile Button -->
+      <button id="menu-btn" class="md:hidden focus:outline-none">
+        <svg class="w-6 h-6 text-red-700 dark:text-red-400" fill="none" stroke="currentColor" stroke-width="2"
+          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2 bg-white dark:bg-gray-800">
+      <a href="/" class="block text-sm hover:text-red-600 dark:hover:text-red-400">Home</a>
+      <a href="/about" class="block text-sm hover:text-red-600 dark:hover:text-red-400">About</a>
+      <a href="/programs" class="block text-sm hover:text-red-600 dark:hover:text-red-400">Programs</a>
+      <a href="/gallery" class="block text-sm text-red-700 dark:text-red-400 font-semibold">Gallery</a>
+      <a href="/contact" class="block text-sm hover:text-red-600 dark:hover:text-red-400">Contact</a>
+      <a href="/volunteer" class="block text-sm hover:text-red-600 dark:hover:text-red-400">Volunteer</a>
+      <a href="/donate" class="block text-sm hover:text-red-600 dark:hover:text-red-400">Donate</a>
+      <a href="/admin/login" class="block text-xs bg-red-600 text-white px-3 py-1 rounded w-max hover:bg-red-700">Admin</a>
     </div>
   </header>
 
-  <!-- Hero Section with Lottie -->
+  <!-- Hero Section -->
   <section class="bg-red-600 text-white py-16 px-6 text-center animate-fadeIn">
     <div class="max-w-4xl mx-auto">
       <h1 class="text-4xl md:text-5xl font-bold mb-4">Moments of Impact</h1>
       <p class="text-lg md:text-xl mb-4">Snapshots from our journey of dignity, love, and empowerment.</p>
-      <lottie-player src="https://lottie.host/6e8c8e2a-e891-4ab0-8d3a-515b07e92fa2/CdpAPtS8y5.json"
-        background="transparent" speed="1" style="width: 100px; height: 100px; margin: auto;" loop autoplay></lottie-player>
+      <lottie-player src="https://lottie.host/6e8c8e2a-e891-4ab0-8d3a-515b07e92fa2/CdpAPtS8y5.json" background="transparent"
+        speed="1" style="width: 100px; height: 100px; margin: auto;" loop autoplay></lottie-player>
     </div>
   </section>
 
   <!-- Gallery Section -->
   <section class="py-16 px-6 max-w-7xl mx-auto animate-fadeIn">
     <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-      <img src="/images/students1.jpeg" alt="Students" class="rounded-xl shadow-lg zoom transition-all duration-300" />
-      <img src="/images/distribution.jpeg" alt="Distribution" class="rounded-xl shadow-lg zoom transition-all duration-300" />
-      <img src="/images/awareness.jpeg" alt="Awareness" class="rounded-xl shadow-lg zoom transition-all duration-300" />
-      <img src="/images/education.jpeg" alt="Education" class="rounded-xl shadow-lg zoom transition-all duration-300" />
-      <img src="/images/community.jpeg" alt="Community" class="rounded-xl shadow-lg zoom transition-all duration-300" />
-      <img src="/images/team.jpeg" alt="Team" class="rounded-xl shadow-lg zoom transition-all duration-300" />
+      <img src="/images/students1.jpeg" alt="Students" class="rounded-xl shadow-lg zoom" />
+      <img src="/images/distribution.jpeg" alt="Distribution" class="rounded-xl shadow-lg zoom" />
+      <img src="/images/awareness.jpeg" alt="Awareness" class="rounded-xl shadow-lg zoom" />
+      <img src="/images/education.jpeg" alt="Education" class="rounded-xl shadow-lg zoom" />
+      <img src="/images/community.jpeg" alt="Community" class="rounded-xl shadow-lg zoom" />
+      <img src="/images/team.jpeg" alt="Team" class="rounded-xl shadow-lg zoom" />
     </div>
   </section>
 
@@ -86,6 +110,15 @@
       <a href="mailto:dadaflowinitiative@gmail.com" class="hover:text-red-400">Email</a>
     </div>
   </footer>
+
+  <script>
+    const menuBtn = document.getElementById('menu-btn');
+    const mobileMenu = document.getElementById('mobile-menu');
+
+    menuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+  </script>
 
 </body>
 

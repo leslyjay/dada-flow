@@ -1,15 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Dada Flow Initiative</title>
   <meta name="description" content="Empowering girls across Kenya with dignity kits, education, and mentorship. Join the Dada Flow Initiative.">
-  <meta name="author" content="Dada Flow Initiative" />
   <link rel="icon" href="/images/logo.png" />
-
-  <!-- Fonts & AOS -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -29,41 +25,39 @@
 
     body {
       font-family: 'Inter', sans-serif;
-      background-color: #fefefe;
+      background: #fff;
       color: #333;
-      line-height: 1.6;
-      opacity: 1;
-      transition: opacity 0.4s ease-out;
+      transition: opacity 0.3s ease-out;
     }
 
     body.fade-out {
       opacity: 0;
-      transition: opacity 0.3s ease-in;
     }
 
     nav {
-      background: #ffffff;
+      background: #fff;
       padding: 1rem 2rem;
       display: flex;
       justify-content: space-between;
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-      animation: slideDown 1s ease-in-out;
+      z-index: 50;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
     }
 
-    .logo {
-      font-weight: 800;
-      font-size: 1.5rem;
-      color: var(--primary-color);
+    .logo img {
+      height: 40px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 1.5rem;
     }
 
     .nav-links a {
-      text-decoration: none;
       color: #333;
-      margin-left: 1.5rem;
+      text-decoration: none;
       font-weight: 600;
       transition: color 0.3s ease;
     }
@@ -72,238 +66,248 @@
       color: var(--primary-color);
     }
 
-    header {
-      background: url('/images/hero-image.jpg') center/cover no-repeat;
+    .menu-toggle {
+      display: none;
+      cursor: pointer;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .menu-toggle span {
+      width: 25px;
+      height: 3px;
+      background: #333;
+    }
+
+    .mobile-nav {
+      display: none;
+      flex-direction: column;
+      background: white;
+      padding: 1rem 2rem;
+      gap: 1rem;
+    }
+
+    .mobile-nav a {
+      color: #333;
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    header.hero {
+      background: url('/images/hero-bg.jpeg') center/cover no-repeat;
       height: 100vh;
       display: flex;
-      align-items: center;
       justify-content: center;
+      align-items: center;
       text-align: center;
       color: white;
       position: relative;
     }
 
-    header::after {
-      content: "";
+    header.hero::before {
+      content: '';
       position: absolute;
       inset: 0;
-      background: rgba(0, 0, 0, 0.6);
+      background: rgba(0, 0, 0, 0.65);
       z-index: 0;
     }
 
-    header h1,
-    header p {
+    .hero-content {
+      z-index: 1;
       position: relative;
-      z-index: 2;
+      max-width: 700px;
+      padding: 1rem;
     }
 
-    header h1 {
+    .hero-content h1 {
       font-size: 3rem;
       font-weight: 800;
+      margin-bottom: 1rem;
     }
 
-    header p {
+    .hero-content p {
       font-size: 1.2rem;
-      margin-top: 1rem;
-      max-width: 700px;
-      margin-inline: auto;
+      margin-bottom: 2rem;
+    }
+
+    .hero-content a {
+      display: inline-block;
+      margin: 0 0.5rem;
+      padding: 0.75rem 1.5rem;
+      font-weight: 600;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: 0.3s ease;
+    }
+
+    .btn-primary {
+      background: var(--primary-color);
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #e53070;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: var(--primary-color);
+    }
+
+    .btn-secondary:hover {
+      background: #f3f3f3;
     }
 
     section {
       padding: 4rem 2rem;
       max-width: 1000px;
-      margin-inline: auto;
+      margin: auto;
+      text-align: center;
     }
 
     section h2 {
       font-size: 2rem;
       margin-bottom: 1rem;
-      text-align: center;
-      color: #111;
     }
 
     section p {
       font-size: 1.1rem;
-      text-align: center;
+      line-height: 1.8;
       max-width: 800px;
       margin: auto;
-      line-height: 1.8;
     }
 
     .cta {
-      background: rgba(255, 255, 255, 0.15);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px rgba(31, 38, 135, 0.2);
-      backdrop-filter: blur(8px);
-      -webkit-backdrop-filter: blur(8px);
+      margin-top: 4rem;
+      background: #fff0f5;
       padding: 3rem 2rem;
-      text-align: center;
-      margin-top: 3rem;
-    }
-
-    .cta h2 {
-      font-size: 2rem;
-    }
-
-    .cta button {
-      padding: 0.75rem 1.75rem;
-      background: var(--primary-color);
-      color: white;
-      font-size: 1rem;
-      font-weight: 600;
-      border: none;
-      border-radius: 10px;
-      margin-top: 2rem;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255, 64, 129, 0.3);
-    }
-
-    .cta button:hover {
-      transform: scale(1.05);
-      box-shadow: 0 6px 20px rgba(255, 64, 129, 0.5);
+      border-radius: 1rem;
+      box-shadow: 0 8px 24px rgba(255, 64, 129, 0.15);
     }
 
     footer {
-      background: var(--dark-bg);
+      background: #222;
       color: white;
-      text-align: center;
       padding: 2rem 1rem;
+      text-align: center;
       margin-top: 4rem;
-      animation: fadeIn 1s ease-in-out 0.5s;
-    }
-
-    @keyframes slideDown {
-      from {
-        opacity: 0;
-        transform: translateY(-20px);
-      }
-
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
-    @keyframes fadeIn {
-      from {
-        opacity: 0;
-      }
-
-      to {
-        opacity: 1;
-      }
     }
 
     @media (max-width: 768px) {
-      header h1 {
-        font-size: 2rem;
-      }
-
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
       .nav-links {
-        display: flex;
-        flex-direction: column;
-        gap: 0.5rem;
-        margin-top: 1rem;
+        display: none;
       }
 
-      .nav-links a {
-        margin: 0;
+      .menu-toggle {
+        display: flex;
+      }
+
+      .mobile-nav.active {
+        display: flex;
+      }
+
+      .hero-content h1 {
+        font-size: 2rem;
       }
     }
   </style>
 </head>
-
 <body>
-  <!-- 🔥 Navigation -->
-  <nav class="bg-white shadow-lg fixed top-0 left-0 w-full z-50">
-    <div class="max-w-7xl mx-auto px-4">
-      <div class="flex justify-between items-center h-16">
-        <a href="index.html" class="flex items-center space-x-2">
-          <img src="/images/logo.png" alt="Dada Flow Logo" class="h-8 w-8">
-          <span class="font-bold text-red-600 text-xl">Dada Flow</span>
-        </a>
-        <div class="hidden md:flex space-x-6 text-sm font-medium text-gray-700">
-          <a href="index.html" class="hover:text-red-600">Home</a>
-          <a href="impact.html" class="hover:text-red-600">Impact</a>
-          <a href="programs.html" class="hover:text-red-600">Programs</a>
-          <a href="volunteer.html" class="hover:text-red-600">Volunteer</a>
-          <a href="donate.html" class="hover:text-red-600">Donate</a>
-          <a href="contact.html" class="hover:text-red-600">Contact</a>
-          <a href="login.html" class="hover:text-red-600">Dashboard</a>
-        </div>
-      </div>
-    </div>
-  </nav>
-  
 
-<!-- 🔥 Hero Section -->
-<section class="relative h-screen flex items-center justify-center text-white text-center px-6" style="background: url('/images/hero-bg.jpeg') center/cover no-repeat;">
-  <div class="absolute inset-0 bg-black bg-opacity-60"></div>
-  <div class="z-10 max-w-3xl">
-    <h1 class="text-5xl font-bold mb-6">Empowering Girls Through Dignity and Care</h1>
-    <p class="text-lg mb-8">Dada Flow Initiative is committed to fighting period poverty, educating communities, and creating change.</p>
-    <div class="space-x-4">
-      <a href="/donate.html" class="bg-pink-600 px-6 py-3 rounded-full font-semibold hover:bg-pink-700 transition">Donate Now</a>
-      <a href="/volunteer.html" class="bg-white text-pink-600 px-6 py-3 rounded-full font-semibold hover:bg-gray-200 transition">Join Us</a>
-    </div>
+<!-- Navigation -->
+<nav>
+  <a href="index.html" class="logo">
+    <img src="/images/logo.png" alt="Dada Flow Logo">
+  </a>
+  <div class="nav-links">
+    <a href="index.html">Home</a>
+    <a href="impact.html">Impact</a>
+    <a href="programs.html">Programs</a>
+    <a href="gallery.html">Gallery</a>
+    <a href="volunteer.html">Volunteer</a>
+    <a href="donate.html">Donate</a>
+    <a href="contact.html">Contact</a>
+    <a href="login.html">Dashboard</a>
   </div>
+  <div class="menu-toggle" onclick="toggleMobileMenu()">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</nav>
+
+<!-- Mobile Nav -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html">Home</a>
+  <a href="impact.html">Impact</a>
+  <a href="programs.html">Programs</a>
+  <a href="volunteer.html">Volunteer</a>
+  <a href="donate.html">Donate</a>
+  <a href="contact.html">Contact</a>
+  <a href="login.html">Dashboard</a>
+</div>
+
+<!-- Hero Section -->
+<header class="hero">
+  <div class="hero-content">
+    <h1>Empowering Girls Through Dignity and Care</h1>
+    <p>Dada Flow Initiative is committed to fighting period poverty, educating communities, and creating change.</p>
+    <a href="donate.html" class="btn-primary">Donate Now</a>
+    <a href="volunteer.html" class="btn-secondary">Join Us</a>
+  </div>
+</header>
+
+<!-- About -->
+<section data-aos="fade-up">
+  <h2>About Dada Flow</h2>
+  <p>
+    We are a youth-led initiative driving period dignity, reproductive health education, and empowerment across Kenya.
+    Through community engagement and advocacy, we break stigma and create real change.
+  </p>
 </section>
 
+<!-- Impact -->
+<section data-aos="fade-up">
+  <h2>Our Impact</h2>
+  <p>
+    Over 5,000 girls reached in 12 counties. 300+ mentorship sessions delivered.
+    We aim to expand across East Africa with strategic partners and funders.
+  </p>
+</section>
 
-  <!-- About -->
-  <section id="about" data-aos="fade-up">
-    <h2>About Dada Flow</h2>
-    <p>
-      We are a youth-led initiative driving period dignity, reproductive health education,
-      and empowerment across Kenya. Through community engagement and advocacy,
-      we break stigma and create real change.
-    </p>
-  </section>
+<!-- CTA -->
+<section class="cta" data-aos="zoom-in">
+  <h2>Join the Movement</h2>
+  <p>Partner, donate, or volunteer with Dada Flow. Together, we rewrite the future for girls.</p>
+  <a href="volunteer.html" class="btn-primary">Support Now</a>
+</section>
 
-  <!-- Impact -->
-  <section id="impact" data-aos="fade-up">
-    <h2>Our Impact</h2>
-    <p>
-      Over 5,000 girls reached in 12 counties. 300+ mentorship sessions delivered.
-      We aim to expand across East Africa with strategic partners and funders.
-    </p>
-  </section>
+<!-- Footer -->
+<footer>
+  <p>&copy; 2025 Dada Flow Initiative. All Rights Reserved.</p>
+</footer>
 
-  <!-- Call to Action -->
-  <section class="cta" data-aos="zoom-in" id="contact">
-    <h2>Join the Movement</h2>
-    <p>Partner, donate, or volunteer with Dada Flow. Together, we rewrite the future for girls.</p>
-    <button onclick="window.location.href='volunteer.html'">Support Now</button>
-  </section>
+<!-- Scripts -->
+<script>
+  AOS.init({ duration: 1000, once: true });
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2025 Dada Flow Initiative. All Rights Reserved.</p>
-  </footer>
+  function toggleMobileMenu() {
+    const nav = document.getElementById("mobileNav");
+    nav.classList.toggle("active");
+  }
 
-  <!-- JS for AOS + Page Transitions -->
-  <script>
-    AOS.init({ duration: 1000, once: true });
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const anchors = document.querySelectorAll('a[href$=".html"]');
-      for (const a of anchors) {
-        a.addEventListener("click", function (e) {
-          e.preventDefault();
-          document.body.classList.add("fade-out");
-          setTimeout(() => {
-            window.location.href = this.href;
-          }, 300);
-        });
-      }
-    });
-  </script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const anchors = document.querySelectorAll('a[href$=".html"]');
+    for (const a of anchors) {
+      a.addEventListener("click", function (e) {
+        e.preventDefault();
+        document.body.classList.add("fade-out");
+        setTimeout(() => {
+          window.location.href = this.href;
+        }, 300);
+      });
+    }
+  });
+</script>
 </body>
-
 </html>

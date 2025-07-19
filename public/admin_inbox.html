@@ -5,23 +5,15 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Admin Inbox | Dada Flow</title>
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="icon" href="/static/img/logo.png" />
+  <link rel="icon" href="/images/logo.png" />
   <style>
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
     .fade-in {
       animation: fadeIn 0.6s ease-in-out;
     }
     @keyframes fadeIn {
-      0% {
-        opacity: 0;
-        transform: translateY(10px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+      0% { opacity: 0; transform: translateY(10px); }
+      100% { opacity: 1; transform: translateY(0); }
     }
     .btn-animated {
       transition: all 0.3s ease;
@@ -29,27 +21,46 @@
     .btn-animated:hover {
       transform: scale(1.03) translateY(-2px);
     }
+    .mobile-menu { display: none; }
+    @media (max-width: 768px) {
+      .desktop-menu { display: none; }
+      .mobile-menu { display: block; }
+    }
   </style>
 </head>
 
 <body class="bg-gray-50 text-gray-800 font-sans leading-relaxed tracking-wide">
 
-  <!-- 🔝 Admin Header -->
+  <!-- 🔝 Header -->
   <header class="bg-white shadow sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <div>
-        <h1 class="text-xl font-bold text-red-700">📥 Admin Inbox - Dada Flow</h1>
-        <p id="clock" class="text-sm text-gray-500"></p>
-      </div>
-      <div class="space-x-4 text-sm">
+      <a href="/index.html" class="flex items-center space-x-2">
+        <img src="/images/logo.png" alt="Dada Flow Logo" class="h-10 w-10" />
+        <h1 class="text-xl font-bold text-red-700 hidden sm:inline">Admin Inbox - Dada Flow</h1>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="desktop-menu space-x-4 text-sm">
         <a href="/admin/volunteers.html" class="text-blue-700 hover:text-blue-900">👥 Volunteers</a>
-        <a href="/index.html" class="text-red-600 hover:underline">← Back to Site</a>
-        <a href="/login.html" class="text-red-600 hover:underline">Logout</a>
+        <a href="/index.html" class="text-gray-700 hover:text-red-600">← Back to Site</a>
+        <a href="/logout.html" class="text-red-600 hover:underline">Logout</a>
+      </nav>
+
+      <!-- Mobile Nav Button -->
+      <div class="mobile-menu">
+        <button onclick="toggleMobileNav()" class="text-2xl focus:outline-none text-red-700">☰</button>
       </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div id="mobileNav" class="hidden px-4 pb-4 space-y-2 bg-white shadow-md">
+      <a href="/admin/volunteers.html" class="block text-sm text-blue-700 hover:text-blue-900">👥 Volunteers</a>
+      <a href="/index.html" class="block text-sm text-gray-700 hover:text-red-600">← Back to Site</a>
+      <a href="/logout.html" class="block text-sm text-red-600 hover:underline">Logout</a>
     </div>
   </header>
 
-  <!-- 💬 Inbox Section -->
+  <!-- 💬 Inbox -->
   <main class="py-10 max-w-6xl mx-auto px-4 fade-in">
     <div class="flex justify-between items-center mb-6">
       <h2 class="text-2xl font-bold text-gray-800">📨 Received Messages</h2>
@@ -59,8 +70,8 @@
       </div>
     </div>
 
-    <!-- 📨 Message Placeholder -->
     <ul class="space-y-6">
+      <!-- Example message -->
       <li class="bg-white p-6 rounded-lg shadow hover:shadow-lg border transition-all duration-300">
         <div class="flex justify-between items-start">
           <div>
@@ -76,7 +87,6 @@
         </div>
       </li>
 
-      <!-- Additional static messages -->
       <li class="bg-white p-6 rounded-lg shadow hover:shadow-lg border transition-all duration-300">
         <div class="flex justify-between items-start">
           <div>
@@ -93,7 +103,7 @@
       </li>
     </ul>
 
-    <!-- ⏩ Static Pagination -->
+    <!-- Pagination -->
     <div class="mt-10 flex justify-center space-x-2">
       <a href="#" class="btn-animated px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-l text-sm">← Previous</a>
       <a href="#" class="btn-animated px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded-r text-sm">Next →</a>
@@ -105,15 +115,19 @@
     <p class="tracking-wide">&copy; 2025 Dada Flow Initiative • Admin Panel</p>
   </footer>
 
-  <!-- 🕒 Live Clock Script -->
+  <!-- Scripts -->
   <script>
     function updateClock() {
       const now = new Date();
-      const time = now.toLocaleTimeString();
-      document.getElementById('clock').innerText = `🕒 ${time}`;
+      document.getElementById('clock').innerText = `🕒 ${now.toLocaleTimeString()}`;
     }
     setInterval(updateClock, 1000);
     updateClock();
+
+    function toggleMobileNav() {
+      const nav = document.getElementById('mobileNav');
+      nav.classList.toggle('hidden');
+    }
   </script>
 </body>
 </html>

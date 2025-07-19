@@ -4,10 +4,10 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin Login | Dada Flow</title>
-  <link rel="icon" href="/images/logo.png">
+  <link rel="icon" href="/images/logo.png" />
   <script src="https://cdn.tailwindcss.com"></script>
 
-  <!-- Animations -->
+  <!-- Page transition animations -->
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const anchors = document.querySelectorAll('a[href$=".html"]');
@@ -22,6 +22,7 @@
       }
     });
   </script>
+
   <style>
     body.fade-out {
       opacity: 0;
@@ -36,6 +37,7 @@
       0% { opacity: 0; transform: translateY(30px); }
       100% { opacity: 1; transform: translateY(0); }
     }
+
     .fade-in { animation: fadeIn 0.8s ease-out forwards; }
 
     input:focus {
@@ -45,38 +47,47 @@
     }
   </style>
 </head>
-<body class="bg-gradient-to-r from-red-100 via-white to-red-100 min-h-screen flex justify-center items-center">
+<body class="bg-gradient-to-br from-red-100 via-white to-red-100 min-h-screen flex items-center justify-center px-4">
 
-  <form action="#" method="POST" class="bg-white shadow-2xl fade-in p-8 rounded-2xl w-full max-w-sm border border-red-200">
-    <div class="flex flex-col items-center mb-6">
-      <img src="/images/logo.png" alt="Dada Flow Logo" class="w-12 h-12 mb-2">
-      <h2 class="text-2xl font-extrabold text-red-700">Admin Login</h2>
-      <p class="text-sm text-gray-500 mt-1">Only authorized users</p>
+  <div class="bg-white fade-in rounded-2xl shadow-2xl border border-red-200 w-full max-w-md p-8 relative">
+    
+    <!-- Logo + Clickable home -->
+    <a href="index.html" class="absolute top-4 left-4">
+      <img src="/images/logo.png" alt="Logo" class="w-10 h-10 hover:scale-105 transition">
+    </a>
+
+    <div class="text-center mt-6">
+      <h2 class="text-3xl font-extrabold text-red-700">Admin Login</h2>
+      <p class="text-sm text-gray-500 mt-1">Restricted access only</p>
     </div>
 
-    <!-- Replace this with your own static error alert if needed -->
-    <!-- <div class="bg-red-100 text-red-700 border border-red-300 text-sm p-2 rounded mb-4">Invalid login</div> -->
+    <!-- Login Form -->
+    <form action="#" method="POST" class="mt-6 space-y-5">
+      <input 
+        type="text" 
+        name="username" 
+        placeholder="Username" 
+        class="w-full border border-gray-300 p-3 rounded-lg transition focus:ring focus:ring-red-200"
+        required>
 
-    <input 
-      type="text" 
-      name="username" 
-      placeholder="Username" 
-      class="border border-gray-300 p-3 w-full mb-4 rounded-lg transition focus:ring focus:ring-red-200"
-      required>
+      <input 
+        type="password" 
+        name="password" 
+        placeholder="Password" 
+        class="w-full border border-gray-300 p-3 rounded-lg transition focus:ring focus:ring-red-200"
+        required>
 
-    <input 
-      type="password" 
-      name="password" 
-      placeholder="Password" 
-      class="border border-gray-300 p-3 w-full mb-6 rounded-lg transition focus:ring focus:ring-red-200"
-      required>
+      <button 
+        type="submit" 
+        class="bg-red-600 hover:bg-red-700 text-white font-semibold w-full py-3 rounded-lg transition duration-300">
+        Login
+      </button>
+    </form>
 
-    <button 
-      type="submit" 
-      class="bg-red-600 hover:bg-red-700 text-white w-full py-3 rounded-lg font-semibold transition duration-300">
-      Login
-    </button>
-  </form>
+    <p class="text-xs text-center text-gray-400 mt-6">
+      &copy; 2025 Dada Flow Initiative. All rights reserved.
+    </p>
+  </div>
 
 </body>
 </html>

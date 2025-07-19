@@ -7,10 +7,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="icon" href="/static/img/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet" />
   <style>
-    .fade-in {
-      animation: fadeIn 0.7s ease-in-out;
+    body {
+      font-family: 'Inter', sans-serif;
     }
+
+    .fade-in {
+      animation: fadeIn 0.6s ease-in-out;
+    }
+
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -21,6 +27,21 @@
         transform: translateY(0);
       }
     }
+
+    .slide-in {
+      animation: slideIn 0.5s ease-out;
+    }
+
+    @keyframes slideIn {
+      from {
+        opacity: 0;
+        transform: translateX(-10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
   </style>
 </head>
 
@@ -29,24 +50,33 @@
   <!-- Header -->
   <header class="bg-white shadow sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <h1 class="text-xl font-bold text-red-700">Volunteer Submissions - Dada Flow</h1>
-      <div class="space-x-4">
-        <a href="/admin-inbox.html" class="text-sm text-blue-700">View Inbox</a>
-        <a href="/index.html" class="text-sm text-red-600 hover:underline">← Back to Site</a>
+      <a href="/index.html" class="flex items-center space-x-2 group">
+        <img src="/static/img/logo.png" class="h-10 w-10 rounded-full" alt="Dada Flow Logo" />
+        <span class="text-xl font-bold text-red-700 group-hover:underline">Dada Flow Admin</span>
+      </a>
+      <nav class="hidden md:flex space-x-4">
+        <a href="/admin-inbox.html" class="text-sm text-blue-700 hover:underline">Inbox</a>
+        <a href="/volunteer.html" class="text-sm text-blue-700 hover:underline font-semibold">Volunteers</a>
+        <a href="/subscribers.html" class="text-sm text-blue-700 hover:underline">Subscribers</a>
         <a href="/logout.html" class="text-sm text-red-600 hover:underline">Logout</a>
-      </div>
+      </nav>
     </div>
   </header>
 
   <!-- Main Content -->
   <main class="py-10 max-w-6xl mx-auto px-4 fade-in">
-    <div class="flex justify-between items-center mb-6">
-      <h2 class="text-2xl font-bold">Volunteer Submissions</h2>
-      <a href="/downloads/volunteers.csv" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm">Download CSV</a>
+    <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
+      <h2 class="text-2xl font-bold text-gray-800">Volunteer Submissions</h2>
+      <a href="/downloads/volunteers.csv"
+        class="mt-3 md:mt-0 bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded text-sm transition">
+        📥 Download CSV
+      </a>
     </div>
 
+    <!-- Submissions List -->
     <ul class="space-y-6">
-      <li class="bg-white p-6 rounded-lg shadow border">
+      <!-- Volunteer 1 -->
+      <li class="bg-white p-6 rounded-lg shadow border slide-in">
         <div class="flex justify-between items-start">
           <div>
             <p class="font-semibold text-red-700">
@@ -56,7 +86,9 @@
           </div>
         </div>
       </li>
-      <li class="bg-white p-6 rounded-lg shadow border">
+
+      <!-- Volunteer 2 -->
+      <li class="bg-white p-6 rounded-lg shadow border slide-in">
         <div class="flex justify-between items-start">
           <div>
             <p class="font-semibold text-red-700">
@@ -66,11 +98,12 @@
           </div>
         </div>
       </li>
-      <!-- You can add more static volunteers here -->
+
+      <!-- Add more submissions here -->
     </ul>
 
-    <!-- If there are no volunteers -->
-    <!-- <p class="text-gray-500 italic mt-8">No volunteers yet.</p> -->
+    <!-- No submissions -->
+    <!-- <p class="text-center text-gray-500 italic mt-8">No volunteer submissions yet.</p> -->
   </main>
 
   <!-- Footer -->
