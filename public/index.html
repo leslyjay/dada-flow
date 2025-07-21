@@ -9,6 +9,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
   <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>  
+  <script src="https://cdn.jsdelivr.net/parallax.js/1.5.0/parallax.min.js"></script>
 
   <style>
     :root {
@@ -43,11 +45,23 @@
       position: sticky;
       top: 0;
       z-index: 50;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
     }
 
-    .logo img {
+    .branding {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .branding img {
       height: 40px;
+    }
+
+    .branding span {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--primary-color);
     }
 
     .nav-links {
@@ -115,8 +129,20 @@
     .hero-content {
       z-index: 1;
       position: relative;
-      max-width: 700px;
+      max-width: 720px;
       padding: 1rem;
+      animation: fadeInUp 1s ease-in-out;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(40px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .hero-content h1 {
@@ -128,6 +154,7 @@
     .hero-content p {
       font-size: 1.2rem;
       margin-bottom: 2rem;
+      color: #f0f0f0;
     }
 
     .hero-content a {
@@ -137,7 +164,7 @@
       font-weight: 600;
       border-radius: 8px;
       text-decoration: none;
-      transition: 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .btn-primary {
@@ -147,15 +174,18 @@
 
     .btn-primary:hover {
       background: #e53070;
+      transform: scale(1.05);
     }
 
     .btn-secondary {
       background: white;
       color: var(--primary-color);
+      border: 2px solid var(--primary-color);
     }
 
     .btn-secondary:hover {
-      background: #f3f3f3;
+      background: #ffe6ef;
+      transform: scale(1.05);
     }
 
     section {
@@ -185,6 +215,37 @@
       box-shadow: 0 8px 24px rgba(255, 64, 129, 0.15);
     }
 
+    #particles-js {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      top: 0;
+      left: 0;
+      z-index: 0;
+    }
+
+    .stats {
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      margin-top: 2rem;
+      gap: 2rem;
+    }
+
+    .stat-box {
+      text-align: center;
+    }
+
+    .stat-box h2 {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+    }
+
+    .stat-box p {
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+
     footer {
       background: #222;
       color: white;
@@ -209,6 +270,10 @@
       .hero-content h1 {
         font-size: 2rem;
       }
+
+      .branding span {
+        font-size: 1rem;
+      }
     }
   </style>
 </head>
@@ -216,8 +281,9 @@
 
 <!-- Navigation -->
 <nav>
-  <a href="index.html" class="logo">
+  <a href="index.html" class="branding">
     <img src="/images/logo.png" alt="Dada Flow Logo">
+    <span>Dada Flow Initiative</span>
   </a>
   <div class="nav-links">
     <a href="index.html">Home</a>
@@ -248,9 +314,10 @@
 </div>
 
 <!-- Hero Section -->
-<header class="hero">
+<header class="hero" id="parallax-hero">
+  <div id="particles-js" data-parallax="scroll" data-image-src="/images/hero-bg.jpeg"></div>
   <div class="hero-content">
-    <h1>Empowering Girls Through Dignity and Care</h1>
+    <h1><span id="typewriter"></span</h1>
     <p>Dada Flow Initiative is committed to fighting period poverty, educating communities, and creating change.</p>
     <a href="donate.html" class="btn-primary">Donate Now</a>
     <a href="volunteer.html" class="btn-secondary">Join Us</a>
@@ -269,10 +336,20 @@
 <!-- Impact -->
 <section data-aos="fade-up">
   <h2>Our Impact</h2>
-  <p>
-    Over 5,000 girls reached in 12 counties. 300+ mentorship sessions delivered.
-    We aim to expand across East Africa with strategic partners and funders.
-  </p>
+  <div class="stats" data-aos="fade-up">
+    <div class="stat-box">
+      <h2><span class="counter" data-count="5000">0</span>+</h2>
+      <p>Girls Reached</p>
+    </div>
+    <div class="stat-box">
+      <h2><span class="counter" data-count="12">0</span></h2>
+      <p>Counties Covered</p>
+    </div>
+    <div class="stat-box">
+      <h2><span class="counter" data-count="300">0</span>+</h2>
+      <p>Mentorship Sessions</p>
+    </div>
+  </div>
 </section>
 
 <!-- CTA -->
@@ -309,5 +386,123 @@
     }
   });
 </script>
+
+<script>
+  particlesJS("particles-js", {
+    "particles": {
+      "number": {
+        "value": 60,
+        "density": { "enable": true, "value_area": 800 }
+      },
+      "color": { "value": "#ffffff" },
+      "shape": {
+        "type": "circle",
+        "stroke": { "width": 0, "color": "#000000" }
+      },
+      "opacity": {
+        "value": 0.4,
+        "random": true,
+        "anim": { "enable": true, "speed": 1, "opacity_min": 0.2 }
+      },
+      "size": {
+        "value": 3,
+        "random": true,
+        "anim": { "enable": false }
+      },
+      "line_linked": {
+        "enable": true,
+        "distance": 120,
+        "color": "#ffffff",
+        "opacity": 0.3,
+        "width": 1
+      },
+      "move": {
+        "enable": true,
+        "speed": 2,
+        "direction": "none",
+        "random": true,
+        "out_mode": "out"
+      }
+    },
+    "interactivity": {
+      "detect_on": "canvas",
+      "events": {
+        "onhover": { "enable": true, "mode": "repulse" },
+        "onclick": { "enable": true, "mode": "push" }
+      },
+      "modes": {
+        "repulse": { "distance": 100 },
+        "push": { "particles_nb": 4 }
+      }
+    },
+    "retina_detect": true
+  });
+</script>
+
+<script>
+  const textArray = [
+    "Empowering Girls Through Dignity and Care",
+    "Ending Period Poverty in Kenya",
+    "Educating, Mentoring & Uplifting Girls"
+  ];
+  let i = 0, j = 0, currentText = "", isDeleting = false;
+
+  function type() {
+    if (i < textArray.length) {
+      if (!isDeleting && j <= textArray[i].length) {
+        currentText = textArray[i].substring(0, j++);
+      } else if (isDeleting && j >= 0) {
+        currentText = textArray[i].substring(0, j--);
+      }
+
+      document.getElementById("typewriter").textContent = currentText;
+
+      if (!isDeleting && j === textArray[i].length) {
+        isDeleting = true;
+        setTimeout(type, 1500);
+      } else if (isDeleting && j === 0) {
+        isDeleting = false;
+        i = (i + 1) % textArray.length;
+      }
+
+      setTimeout(type, isDeleting ? 60 : 100);
+    }
+  }
+
+  document.addEventListener("DOMContentLoaded", type);
+</script>
+
+<script>
+  function animateCounters() {
+    const counters = document.querySelectorAll(".counter");
+    counters.forEach(counter => {
+      counter.innerText = "0";
+      const updateCount = () => {
+        const target = +counter.getAttribute("data-count");
+        const current = +counter.innerText;
+        const increment = target / 80;
+
+        if (current < target) {
+          counter.innerText = `${Math.ceil(current + increment)}`;
+          setTimeout(updateCount, 20);
+        } else {
+          counter.innerText = target;
+        }
+      };
+      updateCount();
+    });
+  }
+
+  let countersStarted = false;
+  window.addEventListener("scroll", () => {
+    const statsSection = document.querySelector(".stats");
+    const sectionTop = statsSection.offsetTop;
+    if (!countersStarted && window.scrollY + window.innerHeight > sectionTop) {
+      animateCounters();
+      countersStarted = true;
+    }
+  });
+</script>
+
 </body>
 </html>
