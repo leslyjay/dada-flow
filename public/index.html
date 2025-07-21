@@ -245,6 +245,17 @@
       margin-top: 0.5rem;
       font-weight: 600;
     }
+    
+    #typewriter::after {
+      content: '|';
+      animation: blink 1s step-end infinite;
+      margin-left: 4px;
+    }
+
+    @keyframes blink {
+      from, to { opacity: 0; }
+      50% { opacity: 1; }
+    }
 
     footer {
       background: #222;
@@ -317,7 +328,7 @@
 <header class="hero" id="parallax-hero">
   <div id="particles-js" data-parallax="scroll" data-image-src="/images/hero-bg.jpeg"></div>
   <div class="hero-content">
-    <h1><span id="typewriter"></span</h1>
+    <h1><span id="typewriter"></span></h1>
     <p>Dada Flow Initiative is committed to fighting period poverty, educating communities, and creating change.</p>
     <a href="donate.html" class="btn-primary">Donate Now</a>
     <a href="volunteer.html" class="btn-secondary">Join Us</a>
@@ -465,7 +476,7 @@
         i = (i + 1) % textArray.length;
       }
 
-      setTimeout(type, isDeleting ? 60 : 100);
+      setTimeout(type, isDeleting ? 120 : 160);
     }
   }
 
