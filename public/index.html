@@ -451,33 +451,31 @@
 </script>
 
 <script>
-  const textArray = [
-    "Empowering Girls Through Dignity and Care",
-    "Ending Period Poverty in Kenya",
-    "Educating, Mentoring & Uplifting Girls"
-  ];
-  let i = 0, j = 0, currentText = "", isDeleting = false;
+  const words = ["Empowering Women", "Creating Change", "Inspiring Hope"];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
 
   function type() {
-    if (i < textArray.length) {
-      if (!isDeleting && j <= textArray[i].length) {
-        currentText = textArray[i].substring(0, j++);
-      } else if (isDeleting && j >= 0) {
-        currentText = textArray[i].substring(0, j--);
-      }
+    const currentWord = words[wordIndex];
+    const typedText = currentWord.substring(0, charIndex);
+    document.getElementById("typewriter").textContent = typedText;
 
-      document.getElementById("typewriter").textContent = currentText;
+    let typeSpeed = isDeleting ? 120 : 200;
 
-      if (!isDeleting && j === textArray[i].length) {
-        isDeleting = true;
-        setTimeout(type, 1500);
-      } else if (isDeleting && j === 0) {
-        isDeleting = false;
-        i = (i + 1) % textArray.length;
-      }
-
-      setTimeout(type, isDeleting ? 120 : 160);
+    if (!isDeleting && charIndex === currentWord.length) {
+      // Pause at full word
+      typeSpeed = 1500;
+      isDeleting = true;
+    } else if (isDeleting && charIndex === 0) {
+      // Move to next word
+      isDeleting = false;
+      wordIndex = (wordIndex + 1) % words.length;
+      typeSpeed = 500;
     }
+
+    charIndex += isDeleting ? -1 : 1;
+    setTimeout(type, typeSpeed);
   }
 
   document.addEventListener("DOMContentLoaded", type);
