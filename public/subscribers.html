@@ -6,10 +6,20 @@
   <title>Subscribers | Dada Flow Initiative</title>
   <link rel="icon" href="/images/logo.png">
   <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/papaparse@5.4.1/papaparse.min.js"></script>
+
   <script>
     tailwind.config = {
       theme: {
         extend: {
+          colors: {
+            gasoline: {
+              600: '#5D4037',
+              700: '#4E342E',
+              800: '#3E2723'
+            }
+          },
           animation: {
             fade: 'fadeIn 0.5s ease-in-out',
           },
@@ -32,69 +42,132 @@
       <div class="flex justify-between items-center py-4">
         <a href="index.html" class="flex items-center space-x-2">
           <img src="/images/logo.png" alt="Logo" class="w-10 h-10 hover:scale-110 transition-transform duration-300">
-          <span class="text-xl font-bold text-red-700 dark:text-red-400">Dada Flow</span>
+          <span class="text-xl font-bold text-gasoline-700 dark:text-gasoline-400">Dada Flow</span>
         </a>
-
         <div class="md:hidden">
-          <button id="menu-btn" class="text-gray-700 dark:text-white focus:outline-none">
-            ☰
-          </button>
+          <button id="menu-btn" class="text-gray-700 dark:text-white focus:outline-none">☰</button>
         </div>
-
         <ul class="hidden md:flex space-x-6 font-medium items-center">
-          <li><a href="dashboard.html" class="hover:text-red-600 dark:hover:text-red-400 transition">Dashboard</a></li>
-          <li><a href="logout.html" class="text-red-600 hover:underline">Logout</a></li>
+          <li><a href="dashboard.html" class="hover:text-gasoline-600 dark:hover:text-gasoline-400 transition">Dashboard</a></li>
+          <li><a href="logout.html" class="text-gasoline-600 hover:underline">Logout</a></li>
         </ul>
       </div>
-
       <!-- Mobile Menu -->
       <div id="mobile-menu" class="hidden md:hidden pb-4">
-        <a href="dashboard.html" class="block py-2 text-gray-800 dark:text-white hover:text-red-600">Dashboard</a>
-        <a href="logout.html" class="block py-2 text-red-600 hover:underline">Logout</a>
+        <a href="dashboard.html" class="block py-2 text-gray-800 dark:text-white hover:text-gasoline-600">Dashboard</a>
+        <a href="logout.html" class="block py-2 text-gasoline-600 hover:underline">Logout</a>
       </div>
     </div>
   </nav>
 
   <!-- MAIN CONTENT -->
-  <main class="pt-24 max-w-5xl mx-auto px-6 animate-fade">
+  <main class="pt-24 max-w-6xl mx-auto px-6 animate-fade">
     <div class="flex justify-between items-center mb-6">
-      <h1 class="text-3xl font-bold text-red-700 dark:text-red-400">📬 Subscribers</h1>
-      <span class="bg-red-100 text-red-800 px-3 py-1 rounded-full text-sm font-semibold">Admin Panel</span>
+      <h1 class="text-3xl font-bold text-gasoline-700 dark:text-gasoline-400">📬 Subscribers</h1>
+      <span class="bg-gasoline-100 text-gasoline-800 px-3 py-1 rounded-full text-sm font-semibold">Admin Panel</span>
     </div>
 
+    <!-- Search and Export -->
+    <div class="flex flex-col md:flex-row justify-between items-center mb-4 space-y-2 md:space-y-0">
+      <input type="text" id="searchInput" placeholder="Search Subscribers..." class="px-4 py-2 border border-gray-300 rounded shadow-sm w-full md:w-1/3">
+      <div class="space-x-2">
+        <button onclick="exportCSV()" class="bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded">Export CSV</button>
+        <button onclick="exportPDF()" class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded">Export PDF</button>
+      </div>
+    </div>
+
+    <!-- Subscribers Table -->
     <div class="overflow-x-auto bg-white dark:bg-gray-800 rounded-xl shadow-lg">
-      <table class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
-        <thead class="bg-red-600 text-white">
+      <table id="subscribersTable" class="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
+        <thead class="bg-gasoline-600 text-white">
           <tr>
             <th class="text-left px-6 py-3 text-sm font-bold uppercase tracking-wider">Name</th>
             <th class="text-left px-6 py-3 text-sm font-bold uppercase tracking-wider">Email</th>
-            <th class="text-left px-6 py-3 text-sm font-bold uppercase tracking-wider">Date Subscribed</th>
+            <th class="text-left px-6 py-3 text-sm font-bold uppercase tracking-wider">Date</th>
+            <th class="text-left px-6 py-3 text-sm font-bold uppercase tracking-wider">Actions</th>
           </tr>
         </thead>
-        <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
-          <tr class="hover:bg-red-50 dark:hover:bg-gray-700 transition">
+        <tbody id="subscriberBody" class="divide-y divide-gray-200 dark:divide-gray-700">
+          <tr class="hover:bg-gasoline-50 dark:hover:bg-gray-700 transition">
             <td class="px-6 py-4">Achieng Wanjiku</td>
             <td class="px-6 py-4">achieng@gmail.com</td>
             <td class="px-6 py-4">2025-06-12</td>
+            <td class="px-6 py-4">
+              <button onclick="viewSubscriber('Achieng Wanjiku', 'achieng@gmail.com')" class="text-blue-600 hover:underline mr-4">View</button>
+              <button onclick="deleteSubscriber(this)" class="text-red-600 hover:underline">Delete</button>
+            </td>
           </tr>
-          <tr class="hover:bg-red-50 dark:hover:bg-gray-700 transition">
-            <td class="px-6 py-4">Grace Mwende</td>
-            <td class="px-6 py-4">grace.mwende@example.com</td>
-            <td class="px-6 py-4">2025-06-15</td>
-          </tr>
-          <!-- Add more rows dynamically here -->
+          <!-- More rows to be added dynamically -->
         </tbody>
       </table>
     </div>
   </main>
 
-  <!-- RESPONSIVE MENU SCRIPT -->
+  <!-- Subscriber Modal -->
+  <div id="subscriberModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden">
+    <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg max-w-md w-full">
+      <h2 class="text-2xl font-bold mb-4 text-gasoline-700">Subscriber Details</h2>
+      <p class="mb-2"><strong>Name:</strong> <span id="modalName"></span></p>
+      <p class="mb-4"><strong>Email:</strong> <span id="modalEmail"></span></p>
+      <button onclick="closeModal()" class="bg-gasoline-600 text-white px-4 py-2 rounded hover:bg-gasoline-700">Close</button>
+    </div>
+  </div>
+
+  <!-- Scripts -->
   <script>
     const btn = document.getElementById('menu-btn');
     const menu = document.getElementById('mobile-menu');
-    btn.addEventListener('click', () => {
-      menu.classList.toggle('hidden');
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+
+    const rows = document.querySelectorAll("#subscriberBody tr");
+    const searchInput = document.getElementById("searchInput");
+
+    searchInput.addEventListener("input", () => {
+      const val = searchInput.value.toLowerCase();
+      rows.forEach(row => {
+        row.style.display = row.textContent.toLowerCase().includes(val) ? "" : "none";
+      });
     });
+
+    function exportCSV() {
+      const data = Array.from(rows).map(row => {
+        return Array.from(row.children).slice(0, 3).map(td => td.textContent);
+      });
+      const csv = Papa.unparse([["Name", "Email", "Date"], ...data]);
+      const blob = new Blob([csv], { type: "text/csv;charset=utf-8;" });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "subscribers.csv";
+      link.click();
+    }
+
+    function exportPDF() {
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      doc.text("Dada Flow Subscribers", 10, 10);
+      const data = Array.from(rows).map(row => {
+        return Array.from(row.children).slice(0, 3).map(td => td.textContent);
+      });
+      data.forEach((row, i) => {
+        doc.text(row.join(" | "), 10, 20 + i * 10);
+      });
+      doc.save("subscribers.pdf");
+    }
+
+    function viewSubscriber(name, email) {
+      document.getElementById("modalName").textContent = name;
+      document.getElementById("modalEmail").textContent = email;
+      document.getElementById("subscriberModal").classList.remove("hidden");
+    }
+
+    function closeModal() {
+      document.getElementById("subscriberModal").classList.add("hidden");
+    }
+
+    function deleteSubscriber(button) {
+      const confirmed = confirm("Are you sure you want to delete this subscriber?");
+      if (confirmed) button.closest("tr").remove();
+    }
   </script>
 </body>
 </html>

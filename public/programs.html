@@ -5,10 +5,25 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Our Programs | Dada Flow Initiative</title>
   <link rel="icon" href="/images/logo.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700;900&display=swap" rel="stylesheet">
   <script src="https://cdn.tailwindcss.com"></script>
   <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css"/>
 
-  <!-- Animations + Transitions -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: { mont: ['Montserrat', 'sans-serif'] },
+          colors: {
+            primary: '#7c3f20',
+            accent: '#ae5c3b',
+          },
+        }
+      }
+    };
+  </script>
+
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const anchors = document.querySelectorAll('a[href$=".html"]');
@@ -16,13 +31,9 @@
         a.addEventListener("click", function (e) {
           e.preventDefault();
           document.body.classList.add("fade-out");
-          setTimeout(() => {
-            window.location.href = this.href;
-          }, 300);
+          setTimeout(() => { window.location.href = this.href; }, 300);
         });
       });
-
-      // Mobile nav toggle
       document.getElementById('mobile-toggle').addEventListener('click', () => {
         document.getElementById('mobile-menu').classList.toggle('hidden');
       });
@@ -30,25 +41,11 @@
   </script>
 
   <style>
-    body.fade-out {
-      opacity: 0;
-      transition: opacity 0.3s ease-in;
-    }
-    body {
-      scroll-behavior: smooth;
-      opacity: 1;
-      transition: opacity 0.3s ease-out;
-    }
-    .nav-link {
-      transition: all 0.3s ease-in-out;
-    }
-    .nav-link:hover {
-      color: #b91c1c;
-      transform: scale(1.05);
-    }
-    .logo-animate {
-      animation: pulse 2.5s infinite;
-    }
+    body.fade-out { opacity: 0; transition: opacity 0.3s ease-in; }
+    body { scroll-behavior: smooth; opacity: 1; transition: opacity 0.3s ease-out; font-family: 'Montserrat', sans-serif; }
+    .nav-link { transition: all 0.3s ease-in-out; }
+    .nav-link:hover { color: #7c3f20; transform: scale(1.05); }
+    .logo-animate { animation: pulse 2.5s infinite; }
     @keyframes pulse {
       0%, 100% { transform: scale(1); }
       50% { transform: scale(1.1); }
@@ -57,41 +54,31 @@
 </head>
 
 <body class="bg-white text-gray-800">
-
-  <!-- Navigation -->
   <header class="bg-white shadow sticky top-0 z-50">
     <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <!-- Logo -->
       <a href="index.html" class="flex items-center gap-3">
         <img src="/images/logo.png" alt="Logo" class="w-10 h-10 logo-animate" />
-        <span class="font-bold text-xl text-red-700">Dada Flow</span>
+        <span class="font-bold text-xl text-primary">Dada Flow</span>
       </a>
-
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex gap-6 text-sm">
+      <nav class="hidden md:flex gap-6 text-sm font-medium">
         <a href="index.html" class="nav-link">Home</a>
         <a href="about.html" class="nav-link">About</a>
-        <a href="programs.html" class="text-red-700 font-semibold nav-link">Programs</a>
+        <a href="programs.html" class="text-primary font-bold nav-link">Programs</a>
         <a href="gallery.html" class="nav-link">Gallery</a>
         <a href="contact.html" class="nav-link">Contact</a>
         <a href="volunteer.html" class="nav-link">Volunteer</a>
         <a href="donate.html" class="nav-link">Donate</a>
       </nav>
-
-      <!-- Mobile Nav Toggle -->
       <button id="mobile-toggle" class="md:hidden focus:outline-none">
-        <svg class="w-6 h-6 text-red-600" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
+        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
           <path d="M4 6h16M4 12h16M4 18h16"/>
         </svg>
       </button>
     </div>
-
-    <!-- Mobile Menu -->
     <div id="mobile-menu" class="md:hidden hidden px-4 pb-4">
       <a href="index.html" class="block py-2 nav-link">Home</a>
       <a href="about.html" class="block py-2 nav-link">About</a>
-      <a href="programs.html" class="block py-2 nav-link text-red-700 font-semibold">Programs</a>
+      <a href="programs.html" class="block py-2 nav-link text-primary font-bold">Programs</a>
       <a href="gallery.html" class="block py-2 nav-link">Gallery</a>
       <a href="contact.html" class="block py-2 nav-link">Contact</a>
       <a href="volunteer.html" class="block py-2 nav-link">Volunteer</a>
@@ -99,48 +86,128 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="bg-red-600 text-white py-20" data-aos="fade-down" data-aos-duration="1000">
-    <div class="max-w-5xl mx-auto text-center px-6">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4 animate-pulse">Our Programs</h1>
-      <p class="text-lg md:text-xl">Each initiative fuels the dreams and dignity of young girls in Kilifi.</p>
+  <section class="bg-[url('/images/banner-programs.jpg')] bg-cover bg-center text-white py-24" data-aos="fade-down">
+    <div class="max-w-5xl mx-auto text-center px-6 backdrop-brightness-50 py-16 rounded-xl">
+      <h1 class="text-4xl md:text-5xl font-extrabold mb-4 animate-pulse drop-shadow-lg">Our Programs</h1>
+      <p class="text-lg md:text-xl font-medium drop-shadow">Each initiative fuels the dreams and dignity of young girls in Kilifi.</p>
     </div>
   </section>
 
-  <!-- Program Cards -->
   <section class="py-20 px-6 max-w-6xl mx-auto grid md:grid-cols-3 gap-10">
     <div class="bg-white shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-500 p-6 rounded-lg" data-aos="fade-up">
       <img src="/images/distribution.jpeg" class="rounded mb-4" alt="Sanitary pad distribution" />
-      <h3 class="text-xl font-bold text-red-700 mb-2">Sanitary Pad Distribution</h3>
+      <h3 class="text-xl font-bold text-primary mb-2">Sanitary Pad Distribution</h3>
       <p>Ensuring every girl has access to safe, reliable menstrual hygiene products each month.</p>
     </div>
 
     <div class="bg-white shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-500 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="100">
       <img src="/images/education.jpeg" class="rounded mb-4" alt="Confidence and health education" />
-      <h3 class="text-xl font-bold text-red-700 mb-2">Confidence & Health Education</h3>
+      <h3 class="text-xl font-bold text-primary mb-2">Confidence & Health Education</h3>
       <p>Workshops and talks that uplift, inform, and empower schoolgirls with essential life knowledge.</p>
     </div>
 
     <div class="bg-white shadow-md hover:shadow-2xl hover:scale-105 transition-all duration-500 p-6 rounded-lg" data-aos="fade-up" data-aos-delay="200">
       <img src="/images/community.jpeg" class="rounded mb-4" alt="Community awareness session" />
-      <h3 class="text-xl font-bold text-red-700 mb-2">Community Awareness</h3>
+      <h3 class="text-xl font-bold text-primary mb-2">Community Awareness</h3>
       <p>Partnering with schools, families, and leaders to erase menstrual stigma through open dialogue.</p>
     </div>
   </section>
 
-  <!-- Footer -->
+  <!-- 🔥 Stats Section -->
+  <section class="bg-gray-100 py-16" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 text-center gap-10">
+      <div>
+        <p class="text-5xl font-bold text-primary counter" data-target="2500">0</p>
+        <p class="mt-2">Girls Empowered</p>
+      </div>
+      <div>
+        <p class="text-5xl font-bold text-primary counter" data-target="300">0</p>
+        <p class="mt-2">Schools Reached</p>
+      </div>
+      <div>
+        <p class="text-5xl font-bold text-primary counter" data-target="50">0</p>
+        <p class="mt-2">Counties Covered</p>
+      </div>
+      <div>
+        <p class="text-5xl font-bold text-primary counter" data-target="600">0</p>
+        <p class="mt-2">Workshops Hosted</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 💝 Donate CTA -->
+  <section class="bg-primary text-white text-center py-16" data-aos="zoom-in">
+    <h2 class="text-3xl font-bold mb-4">Fuel the Flow — Make a Difference</h2>
+    <p class="mb-6">Every contribution empowers a girl to thrive with dignity and education.</p>
+    <a href="donate.html" class="bg-white text-primary font-bold px-6 py-3 rounded-full hover:bg-gray-200 transition">Donate Now</a>
+  </section>
+
+  <!-- 🌟 Testimonials Carousel -->
+  <section class="max-w-6xl mx-auto px-6 my-20" data-aos="fade-up">
+    <h2 class="text-2xl font-bold text-center mb-8 text-primary">Community Voices</h2>
+    <div class="swiper mySwiper">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide p-6 bg-white rounded-xl shadow text-center">
+          <p class="text-lg italic">“Thanks to Dada Flow, I stayed in school all year.”</p>
+          <p class="mt-2 font-bold">– Mary, Student</p>
+        </div>
+        <div class="swiper-slide p-6 bg-white rounded-xl shadow text-center">
+          <p class="text-lg italic">“This initiative is truly transformational.”</p>
+          <p class="mt-2 font-bold">– Headteacher</p>
+        </div>
+        <div class="swiper-slide p-6 bg-white rounded-xl shadow text-center">
+          <p class="text-lg italic">“We are proud partners of Dada Flow.”</p>
+          <p class="mt-2 font-bold">– NGO Director</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <footer class="bg-gray-900 text-white py-8 text-center" data-aos="fade-up">
     <p>&copy; 2025 Dada Flow Initiative • Mtwapa, Kenya</p>
-    <div class="mt-4 space-x-4">
-      <a href="https://facebook.com/DadaFlowInitiative" target="_blank" class="hover:text-red-500">Facebook</a>
-      <a href="https://wa.me/254758674533" target="_blank" class="hover:text-red-500">WhatsApp</a>
-      <a href="mailto:dadaflowinitiative@gmail.com" class="hover:text-red-500">Email</a>
+    <div class="mt-4 space-x-4 text-sm">
+      <a href="https://facebook.com/DadaFlowInitiative" target="_blank" class="hover:text-primary">Facebook</a>
+      <a href="https://wa.me/254758674533" target="_blank" class="hover:text-primary">WhatsApp</a>
+      <a href="mailto:dadaflowinitiative@gmail.com" class="hover:text-primary">Email</a>
     </div>
   </footer>
 
-  <!-- AOS Init -->
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-  <script>AOS.init();</script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    AOS.init({ once: true });
 
+    // Scroll-triggered counter animation
+    const counters = document.querySelectorAll('.counter');
+    const speed = 50;
+    const runCounter = (counter) => {
+      const target = +counter.getAttribute('data-target');
+      const count = +counter.innerText;
+      if (count < target) {
+        counter.innerText = Math.ceil(count + target / speed);
+        setTimeout(() => runCounter(counter), 20);
+      } else {
+        counter.innerText = target;
+      }
+    };
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) runCounter(entry.target);
+      });
+    }, { threshold: 1 });
+    counters.forEach(counter => observer.observe(counter));
+
+    // Swiper carousel
+    new Swiper(".mySwiper", {
+      loop: true,
+      autoplay: { delay: 4000 },
+      spaceBetween: 30,
+      slidesPerView: 1,
+      breakpoints: {
+        768: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 }
+      }
+    });
+  </script>
 </body>
 </html>

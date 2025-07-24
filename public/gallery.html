@@ -1,125 +1,171 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Gallery | Dada Flow Initiative</title>
   <link rel="icon" href="/images/logo.png" />
   <script src="https://cdn.tailwindcss.com"></script>
-  <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
-  <script>
-    tailwind.config = {
-      darkMode: 'media',
-      theme: {
-        extend: {
-          animation: {
-            fadeIn: "fadeIn 1.2s ease-in-out forwards",
-          },
-          keyframes: {
-            fadeIn: {
-              '0%': { opacity: 0, transform: 'translateY(20px)' },
-              '100%': { opacity: 1, transform: 'translateY(0)' },
-            }
-          }
-        }
-      }
-    };
-  </script>
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/swiper@10/swiper-bundle.min.css"/>
   <style>
-    .zoom:hover {
-      transform: scale(1.05);
-      transition: transform 0.4s ease-in-out;
+    .hero-bg {
+      background-image: url('/images/gallery-hero.jpg');
+      background-size: cover;
+      background-position: center;
+    }
+    .gallery-img:hover .overlay {
+      opacity: 1;
     }
   </style>
 </head>
 
-<body class="bg-white text-gray-800 dark:bg-gray-900 dark:text-white">
+<body class="bg-gray-50 text-gray-800">
 
-  <!-- Navigation -->
-  <header class="bg-white dark:bg-gray-800 shadow sticky top-0 z-50">
-    <div class="max-w-7xl mx-auto px-4 py-4 flex justify-between items-center">
-      <!-- Logo -->
-      <a href="/" class="flex items-center gap-2">
-        <img src="/images/logo.png" alt="Logo" class="w-10 h-10" />
-        <span class="font-bold text-xl text-red-700 dark:text-red-400">Dada Flow</span>
+  <!-- 🔗 Header -->
+  <header class="bg-white shadow sticky top-0 z-50">
+    <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+      <a href="/" class="flex items-center gap-3">
+        <img src="/images/logo.png" alt="Logo" class="h-10" />
+        <span class="text-xl font-bold text-brown-600">Dada Flow</span>
       </a>
-
-      <!-- Desktop Nav -->
-      <nav class="hidden md:flex gap-6 text-sm font-medium">
-        <a href="/" class="hover:text-red-600 dark:hover:text-red-400">Home</a>
-        <a href="/about" class="hover:text-red-600 dark:hover:text-red-400">About</a>
-        <a href="/programs" class="hover:text-red-600 dark:hover:text-red-400">Programs</a>
-        <a href="/gallery" class="text-red-700 dark:text-red-400 font-semibold">Gallery</a>
-        <a href="/contact" class="hover:text-red-600 dark:hover:text-red-400">Contact</a>
-        <a href="/volunteer" class="hover:text-red-600 dark:hover:text-red-400">Volunteer</a>
-        <a href="/donate" class="hover:text-red-600 dark:hover:text-red-400">Donate</a>
-        <a href="/admin/login" class="text-xs bg-red-600 text-white px-3 py-1 rounded hover:bg-red-700">Admin</a>
+      <nav class="space-x-6 font-semibold text-gray-700">
+        <a href="/" class="hover:text-brown-600">Home</a>
+        <a href="/donate.html" class="hover:text-brown-600">Donate</a>
+        <a href="/contact.html" class="hover:text-brown-600">Contact</a>
       </nav>
-
-      <!-- Mobile Button -->
-      <button id="menu-btn" class="md:hidden focus:outline-none">
-        <svg class="w-6 h-6 text-red-700 dark:text-red-400" fill="none" stroke="currentColor" stroke-width="2"
-          viewBox="0 0 24 24" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M4 6h16M4 12h16M4 18h16" />
-        </svg>
-      </button>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div id="mobile-menu" class="md:hidden hidden px-6 pb-4 space-y-2 bg-white dark:bg-gray-800">
-      <a href="/" class="block text-sm hover:text-red-600 dark:hover:text-red-400">Home</a>
-      <a href="/about" class="block text-sm hover:text-red-600 dark:hover:text-red-400">About</a>
-      <a href="/programs" class="block text-sm hover:text-red-600 dark:hover:text-red-400">Programs</a>
-      <a href="/gallery" class="block text-sm text-red-700 dark:text-red-400 font-semibold">Gallery</a>
-      <a href="/contact" class="block text-sm hover:text-red-600 dark:hover:text-red-400">Contact</a>
-      <a href="/volunteer" class="block text-sm hover:text-red-600 dark:hover:text-red-400">Volunteer</a>
-      <a href="/donate" class="block text-sm hover:text-red-600 dark:hover:text-red-400">Donate</a>
-      <a href="/admin/login" class="block text-xs bg-red-600 text-white px-3 py-1 rounded w-max hover:bg-red-700">Admin</a>
     </div>
   </header>
 
-  <!-- Hero Section -->
-  <section class="bg-red-600 text-white py-16 px-6 text-center animate-fadeIn">
-    <div class="max-w-4xl mx-auto">
-      <h1 class="text-4xl md:text-5xl font-bold mb-4">Moments of Impact</h1>
-      <p class="text-lg md:text-xl mb-4">Snapshots from our journey of dignity, love, and empowerment.</p>
-      <lottie-player src="https://lottie.host/6e8c8e2a-e891-4ab0-8d3a-515b07e92fa2/CdpAPtS8y5.json" background="transparent"
-        speed="1" style="width: 100px; height: 100px; margin: auto;" loop autoplay></lottie-player>
+  <!-- 🖼️ Hero -->
+  <section class="hero-bg text-white h-[50vh] flex items-center justify-center relative">
+    <div class="absolute inset-0 bg-black bg-opacity-60"></div>
+    <div class="z-10 text-center">
+      <h1 class="text-4xl font-extrabold mb-2">Our Impact in Pictures</h1>
+      <p class="text-lg">Captured moments of change, love and dignity</p>
     </div>
   </section>
 
-  <!-- Gallery Section -->
-  <section class="py-16 px-6 max-w-7xl mx-auto animate-fadeIn">
-    <div class="grid grid-cols-2 md:grid-cols-3 gap-6">
-      <img src="/images/students1.jpeg" alt="Students" class="rounded-xl shadow-lg zoom" />
-      <img src="/images/distribution.jpeg" alt="Distribution" class="rounded-xl shadow-lg zoom" />
-      <img src="/images/awareness.jpeg" alt="Awareness" class="rounded-xl shadow-lg zoom" />
-      <img src="/images/education.jpeg" alt="Education" class="rounded-xl shadow-lg zoom" />
-      <img src="/images/community.jpeg" alt="Community" class="rounded-xl shadow-lg zoom" />
-      <img src="/images/team.jpeg" alt="Team" class="rounded-xl shadow-lg zoom" />
+  <!-- 🧮 Stats -->
+  <section class="py-16 bg-white">
+    <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-center">
+      <div data-aos="fade-up">
+        <h2 class="text-4xl font-bold text-brown-600 counter" data-count="1500">0</h2>
+        <p class="mt-2 text-gray-600">Girls Empowered</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="100">
+        <h2 class="text-4xl font-bold text-brown-600 counter" data-count="200">0</h2>
+        <p class="mt-2 text-gray-600">Schools Visited</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="200">
+        <h2 class="text-4xl font-bold text-brown-600 counter" data-count="500">0</h2>
+        <p class="mt-2 text-gray-600">Dignity Kits Donated</p>
+      </div>
+      <div data-aos="fade-up" data-aos-delay="300">
+        <h2 class="text-4xl font-bold text-brown-600 counter" data-count="10">0</h2>
+        <p class="mt-2 text-gray-600">Counties Reached</p>
+      </div>
     </div>
   </section>
 
-  <!-- Footer -->
-  <footer class="bg-gray-900 text-white py-8 text-center mt-12">
-    <p class="text-sm">&copy; 2025 Dada Flow Initiative • Mtwapa, Kenya</p>
-    <div class="mt-4 space-x-4 text-sm">
-      <a href="https://facebook.com/DadaFlowInitiative" target="_blank" class="hover:text-red-400">Facebook</a>
-      <a href="https://wa.me/254758674533" target="_blank" class="hover:text-red-400">WhatsApp</a>
-      <a href="mailto:dadaflowinitiative@gmail.com" class="hover:text-red-400">Email</a>
+  <!-- 🖼️ Gallery Grid -->
+  <section class="py-16 bg-gray-100">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+        <!-- Replace with actual image names -->
+        <div class="relative overflow-hidden gallery-img" data-aos="zoom-in">
+          <img src="/images/gallery1.jpg" class="w-full h-64 object-cover rounded-lg shadow" alt="Gallery 1">
+          <div class="absolute inset-0 bg-black bg-opacity-60 text-white flex items-center justify-center opacity-0 transition duration-300 overlay">
+            <p class="text-lg font-semibold">Mentorship Session</p>
+          </div>
+        </div>
+        <div class="relative overflow-hidden gallery-img" data-aos="zoom-in" data-aos-delay="100">
+          <img src="/images/gallery2.jpg" class="w-full h-64 object-cover rounded-lg shadow" alt="Gallery 2">
+          <div class="absolute inset-0 bg-black bg-opacity-60 text-white flex items-center justify-center opacity-0 transition duration-300 overlay">
+            <p class="text-lg font-semibold">Dignity Kit Distribution</p>
+          </div>
+        </div>
+        <div class="relative overflow-hidden gallery-img" data-aos="zoom-in" data-aos-delay="200">
+          <img src="/images/gallery3.jpg" class="w-full h-64 object-cover rounded-lg shadow" alt="Gallery 3">
+          <div class="absolute inset-0 bg-black bg-opacity-60 text-white flex items-center justify-center opacity-0 transition duration-300 overlay">
+            <p class="text-lg font-semibold">Community Outreach</p>
+          </div>
+        </div>
+      </div>
     </div>
+  </section>
+
+  <!-- 💬 Testimonials -->
+  <section class="py-16 bg-white">
+    <h2 class="text-center text-3xl font-bold mb-8 text-brown-600" data-aos="fade-up">What People Are Saying</h2>
+    <div class="swiper-container max-w-4xl mx-auto" data-aos="fade-up">
+      <div class="swiper-wrapper">
+        <div class="swiper-slide p-6 bg-gray-100 rounded-lg shadow text-center">
+          <p class="text-lg">"Dada Flow has transformed lives in our school."</p>
+          <h4 class="mt-4 font-bold text-brown-700">— Headteacher, Mombasa</h4>
+        </div>
+        <div class="swiper-slide p-6 bg-gray-100 rounded-lg shadow text-center">
+          <p class="text-lg">"I gained so much confidence after their mentorship."</p>
+          <h4 class="mt-4 font-bold text-brown-700">— Student, Kilifi</h4>
+        </div>
+      </div>
+      <!-- Swiper Pagination -->
+      <div class="swiper-pagination mt-4"></div>
+    </div>
+  </section>
+
+  <!-- 💖 Donate CTA -->
+  <section class="py-16 bg-brown-700 text-white text-center px-6" data-aos="fade-up">
+    <h2 class="text-3xl font-bold mb-4">Want to Make a Bigger Impact?</h2>
+    <p class="mb-6 text-lg">Join us in restoring dignity and empowerment to every girl.</p>
+    <a href="/donate.html" class="inline-block bg-white text-brown-700 font-bold px-8 py-3 rounded-lg shadow hover:bg-gray-100 transition transform hover:scale-105">
+      Donate Now
+    </a>
+  </section>
+
+  <!-- 🔝 Footer -->
+  <footer class="py-6 bg-gray-900 text-center text-gray-300">
+    <p>&copy; 2025 Dada Flow Initiative. All rights reserved.</p>
   </footer>
 
+  <!-- 🔧 Scripts -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    const menuBtn = document.getElementById('menu-btn');
-    const mobileMenu = document.getElementById('mobile-menu');
-
-    menuBtn.addEventListener('click', () => {
-      mobileMenu.classList.toggle('hidden');
-    });
+    AOS.init();
   </script>
+  <script src="https://unpkg.com/swiper@10/swiper-bundle.min.js"></script>
+  <script>
+    new Swiper('.swiper-container', {
+      loop: true,
+      autoplay: { delay: 5000 },
+      pagination: { el: '.swiper-pagination' }
+    });
 
+    const counters = document.querySelectorAll('.counter');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          counters.forEach(counter => {
+            const updateCount = () => {
+              const target = +counter.getAttribute('data-count');
+              const count = +counter.innerText;
+              const speed = 20;
+              const inc = Math.ceil(target / speed);
+              if (count < target) {
+                counter.innerText = count + inc;
+                setTimeout(updateCount, 30);
+              } else {
+                counter.innerText = target;
+              }
+            };
+            updateCount();
+          });
+          observer.disconnect();
+        }
+      });
+    }, { threshold: 0.5 });
+
+    counters.forEach(counter => observer.observe(counter));
+  </script>
 </body>
-
 </html>

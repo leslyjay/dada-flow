@@ -1,75 +1,108 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Reply | Dada Flow Admin</title>
   <link rel="icon" href="/images/logo.png" />
   <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            primary: '#7c3f20', // Replaced red with brown
+            accent: '#ae5c3b',
+          },
+          animation: {
+            'fade-in-up': 'fadeInUp 0.7s ease-out both',
+          },
+          keyframes: {
+            fadeInUp: {
+              '0%': { opacity: '0', transform: 'translateY(20px)' },
+              '100%': { opacity: '1', transform: 'translateY(0)' },
+            },
+          }
+        }
+      }
+    }
+  </script>
 </head>
-<body class="bg-gray-50 text-gray-800">
+<body class="bg-gray-50 text-gray-800 dark:bg-gray-900 dark:text-gray-100 transition-colors duration-300">
 
   <!-- 🌐 Header -->
-  <header class="bg-white shadow-md sticky top-0 z-50">
+  <header class="bg-white dark:bg-gray-800 shadow-md sticky top-0 z-50 transition duration-300">
     <div class="max-w-6xl mx-auto flex justify-between items-center px-6 py-4">
       <a href="/dashboard.html" class="flex items-center gap-2">
         <img src="/images/logo.png" alt="Dada Flow Logo" class="h-10">
-        <span class="text-xl font-bold text-red-600">Dada Flow Admin</span>
+        <span class="text-xl font-bold text-primary">Dada Flow Admin</span>
       </a>
-      <a href="/logout.html" class="text-red-600 font-semibold hover:underline transition duration-200">Logout</a>
+      <a href="/logout.html" class="text-primary font-semibold hover:underline transition duration-200">Logout</a>
     </div>
   </header>
 
   <!-- 💬 Reply Section -->
-  <main class="max-w-3xl mx-auto px-6 py-10 bg-white mt-10 rounded-xl shadow-xl animate-fade-in-up">
-    <h2 class="text-2xl font-extrabold text-red-700 mb-6 tracking-tight animate-pulse">
+  <main class="max-w-3xl mx-auto px-6 py-10 bg-white dark:bg-gray-800 mt-10 rounded-xl shadow-xl animate-fade-in-up">
+    <h2 class="text-2xl font-extrabold text-primary mb-6 tracking-tight animate-pulse">
       ✉️ Reply to <span class="font-bold">John Doe</span>
     </h2>
 
-    <div class="space-y-2 text-gray-700">
-      <p><span class="font-semibold text-gray-900">📧 Email:</span> johndoe@example.com</p>
-      <p><span class="font-semibold text-gray-900">📝 Message:</span> Hello, I’m reaching out about the Dada Flow Initiative!</p>
+    <div class="space-y-2 text-gray-700 dark:text-gray-300">
+      <p><span class="font-semibold text-gray-900 dark:text-white">📧 Email:</span> johndoe@example.com</p>
+      <p><span class="font-semibold text-gray-900 dark:text-white">📝 Message:</span> Hello, I’m reaching out about the Dada Flow Initiative!</p>
     </div>
 
-    <form method="POST" class="mt-6">
-      <label for="reply" class="block text-sm font-medium text-gray-700 mb-2">Your Reply</label>
+    <form method="POST" id="replyForm" class="mt-6 space-y-4">
+      <label for="reply" class="block text-sm font-medium text-gray-700 dark:text-gray-200">Your Reply</label>
       <textarea
         name="reply"
         id="reply"
-        class="w-full p-4 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-red-500 focus:border-red-500 transition-all duration-300"
+        class="w-full p-4 border border-gray-300 dark:border-gray-600 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary transition-all duration-300"
         rows="6"
         placeholder="Write your thoughtful reply here..."
         required
       ></textarea>
 
       <div class="flex justify-between items-center mt-6">
-        <a href="/dashboard.html" class="text-sm text-gray-500 hover:underline">← Back to Dashboard</a>
+        <a href="/dashboard.html" class="text-sm text-gray-500 hover:underline dark:text-gray-400">← Back to Dashboard</a>
         <button
           type="submit"
-          class="inline-flex items-center gap-2 px-6 py-2 bg-red-600 hover:bg-red-700 text-white font-semibold rounded-lg shadow transition duration-300 ease-in-out transform hover:scale-105"
+          class="inline-flex items-center gap-2 px-6 py-2 bg-primary hover:bg-accent text-white font-semibold rounded-lg shadow transition duration-300 ease-in-out transform hover:scale-105"
         >
           🚀 Send Reply
         </button>
       </div>
     </form>
+
+    <!-- ✅ Placeholder for AJAX result -->
+    <p id="statusMsg" class="mt-4 text-sm font-medium text-green-600 hidden">Reply sent successfully!</p>
   </main>
 
-  <!-- ✨ Animations -->
-  <style>
-    @keyframes fade-in-up {
-      from {
-        opacity: 0;
-        transform: translateY(20px);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-    .animate-fade-in-up {
-      animation: fade-in-up 0.7s ease-out both;
-    }
-  </style>
+  <!-- 🔌 Future Integration Scripts -->
+  <script>
+    // Optional AJAX handler (Flask or Firebase backend)
+    // Replace this with your live endpoint
+    document.getElementById('replyForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const formData = new FormData(this);
+      const message = formData.get('reply');
 
+      // Simulate AJAX for now
+      document.getElementById('statusMsg').classList.remove('hidden');
+      
+      // Example POST request for Flask:
+      /*
+      fetch('/api/reply', {
+        method: 'POST',
+        body: JSON.stringify({ email: 'johndoe@example.com', message }),
+        headers: { 'Content-Type': 'application/json' }
+      })
+      .then(res => res.json())
+      .then(data => {
+        document.getElementById('statusMsg').innerText = 'Reply sent!';
+      });
+      */
+    });
+  </script>
 </body>
 </html>
